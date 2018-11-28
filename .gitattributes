@@ -1,2 +1,7 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+vs2013 引用外部程序 exe文件和debug（release）放在同一文件夹
+{
+    TCHAR lpBin[MAX_PATH];
+	InitPath(lpBin, NULL, NULL);
+	CString name = _T("MicroScope.exe");
+	ShellExecute(NULL, _T("open"), name, NULL, lpBin, SW_SHOWNORMAL);
+}
