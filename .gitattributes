@@ -5,3 +5,16 @@ vs2013 引用外部程序 exe文件和debug（release）放在同一文件夹
 	CString name = _T("MicroScope.exe");
 	ShellExecute(NULL, _T("open"), name, NULL, lpBin, SW_SHOWNORMAL);
 }
+
+vs2013 most basic c++ show string
+#include<iostream>
+int main()
+{
+	std::cout << "Enter two numbers:" << std::endl;
+
+	int v1 = 0, v2 = 0;
+	std::cin >> v1 >> v2;
+	std::cout << "The sum of " << v1 << " and " << v2
+		<< " is " << v1 + v2 << std::endl;
+	return 0;
+}
