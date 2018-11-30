@@ -31,6 +31,18 @@ int main()
 	}
 	std::cout << "Sum of 1 to 10 is" << sum << std::endl;
 	return 0;
-	
 }
 
+
+
+vs加和显示 for循环 （解决了 运行无法显示的问题 加上 system("pasuse") 即可 ）
+#include <iostream>
+int main()
+{
+	int sum = 0;
+	for (int val = 1; val <= 10;++val)
+	sum += val;
+	std::cout << "Sum of 1 to 10 is" << sum << std::endl;
+	system("pause");
+	return 0;
+}
