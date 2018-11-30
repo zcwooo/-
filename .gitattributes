@@ -85,3 +85,22 @@ int main()
 	system("pause");
 	return 0;
 }
+
+类：定义了一个类型，以及与其相关联的一组操作，是c++最重要的特性之一。
+对于书店程序，定义类名为Sale_item
+头文件 Sale_item.h中已经定义了。
+为了使用标准库，，必须包相应的头文件。
+我们可以定义类类型的变量，类定义了对类的对象你可以执行的操作。
+标准库头文件使用<>,非标准库使用 ""
+
+库的相关操作 默认搜索默认目录下 把.h文件包括过去即可
+#include<iostream>
+#include"Sales_item.h"
+int main()
+{
+	Sales_item item1, item2;
+	std::cin >> item1 >> item2;
+	std::cout << item1 + item2 << std::endl;
+	system("pause");
+	return 0;
+}
