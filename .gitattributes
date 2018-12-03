@@ -137,3 +137,17 @@ struct Sales_data {
 	double revenue = 0.0;
 
 };
+
+#include<iostream>
+using std::cin;
+using std::cout;
+int main()
+{
+	int i;
+	cin >> i;
+	cout << i;
+	system("pause");
+	return 0;
+}
+
+  
