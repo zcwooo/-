@@ -246,6 +246,25 @@ int main()
 
 }
 
+#include<iostream>
+#include<string>
+using std::string;
+using std::cin;
+using std::cout;
+using std::endl;
+int main()
+{
+	string s("Hello world!!");
+	for (
+		decltype(s.size()) index = 0;
+		index != s.size() && ! isspace (s[index]); ++index)
+	s[index] = toupper(s[index]);
+			cout << s << endl;
+	system("pause");
+	return 0;
+
+}
+
   
   
   
