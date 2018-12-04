@@ -210,6 +210,25 @@ int main()
 
 }
 
+#include<iostream>
+#include<string>
+using std::string;
+using std::cin;
+using std::cout;
+using std::endl;
+int main()
+{
+	string s("Hello world!!");
+	decltype(s.size()) punct_cnt = 0;
+	for (auto c : s)
+		if (ispunct(c))
+			++punct_cnt;
+		cout <<  punct_cnt<<"punctuation characters is in the "<<s<< endl;
+	system("pause");
+	return 0;
+
+}
+
   
   
   
