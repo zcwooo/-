@@ -285,6 +285,24 @@ int main()
 	return 0;
 }
 
-  
+#include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{
+	vector<int>v;
+	int num;
+	cin >> num;
+	int a;
+	for (int i = 0; i < num; i++)
+	{
+		cin >> a;
+		v.push_back(a);
+	}
+	for (auto i : v)
+	{
+		cout << i << endl;
+	}
+}
   
   
