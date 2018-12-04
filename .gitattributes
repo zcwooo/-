@@ -265,6 +265,26 @@ int main()
 
 }
 
+  #include<iostream>
+#include<string>
+using std::string;
+using std::cin;
+using std::cout;
+using std::endl;
+int main()
+{
+	string s("0123456789ABCDEF");
+	cout << "Enter a  series of numbers between 0 and 15 separted by spaces. Hit Enter when finished" << endl;
+	string result;
+	string::size_type n;
+	while (cin >> n)
+	if (n < s.size())
+		result = result + s[n];
+			cout << "Your result is " <<result<< endl;
+	system("pause");
+	return 0;
+}
+
   
   
   
