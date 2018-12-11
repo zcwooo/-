@@ -338,3 +338,23 @@ int main()
 	system("pause");
 	return 0;
 }
+
+#include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{
+	string s("some string");
+	if (s.begin() != s.end())
+	{
+		auto it = s.begin();
+		*it = toupper(*it);
+
+	}
+	for (int i = 0; i < s.size(); i++)
+	{
+		cout << s[i] << endl;
+	}
+	system("pause");
+	return 0;
+}
