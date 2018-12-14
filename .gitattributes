@@ -384,3 +384,39 @@ int main()
 	system("pause");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 	return 0;
 }
+
+#include<iostream>
+#include<vector>
+#include <string>
+using namespace std;
+int main()
+{
+	cout << "输入一串字符: " << endl;
+	unsigned acnt = 0, ecnt = 0, icnt = 0, ocnt = 0, ucnt = 0;
+	char ch;
+	while (cin >> ch)
+	{
+		switch (ch)
+		{
+		case 'a':
+			++acnt;
+			break;
+		case 'e':
+			++ecnt;
+			break;
+		case 'i':
+			++icnt;
+			break;
+		case 'o':
+			++ocnt;
+			break;
+		case 'u':
+			++ucnt;
+			break;
+		}
+
+	}
+	cout << "Number of a is" << acnt << '\n' << "Number of e is" << ecnt << '\n' << "Number of i is" << icnt << '\n' << "Number of o is" << ocnt << '\n' << "Number of u is" << ucnt << endl;
+	system("pause");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+	return 0;
+}
