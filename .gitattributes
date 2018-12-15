@@ -420,3 +420,41 @@ int main()
 	system("pause");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 	return 0;
 }
+
+#include<iostream>
+using namespace std;
+int fact(int val)
+	{
+		int ret = 1;
+		while (val > 1)
+			ret = ret*val--;
+		return ret;
+	}
+	
+int fact(int);
+int main()
+{
+
+	int j = fact(5);
+	cout << "the result is " << j << endl;
+	system("pause");
+	return 0;
+}
+
+
+#include<iostream>
+#include<string>
+using namespace std;
+char &get_val(string &str, string::size_type ix)
+{
+	return str[ix];
+}
+int main()
+{
+	string s("a value");
+	get_val(s, 1) = 's';
+	cout << s << endl;
+
+	system("pause");
+	return 0;
+}
