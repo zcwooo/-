@@ -467,3 +467,152 @@ if name == 'python':         # 判断变量否为'python'
     print ('welcome boss')    # 并输出欢迎信息
 else:
     print ('name')              # 条件不成立时输出变量名称
+	# 例3：if语句多个条件
+ 
+num = 9
+if num >= 0 and num <= 10:    # 判断值是否在0~10之间
+    print 'hello'
+# 输出结果: hello
+ 
+num = 10
+if num < 0 or num > 10:    # 判断值是否在小于0或大于10
+    print 'hello'
+else:
+    print 'undefine'
+# 输出结果: undefine
+ 
+num = 8
+# 判断值是否在0~5或者10~15之间
+if (num >= 0 and num <= 5) or (num >= 10 and num <= 15):    
+    print 'hello'
+else:
+    print 'undefine'
+# 输出结果: undefine
+
+#include<windows.h>    //包含windows.h头文件
+
+LRESULT CALLBACK WindowProc( HWND , UINT ,WPARAM , LPARAM ); //声明窗口函数
+
+ 
+
+int APIENTRY WinMain(HINSTANCE hinstance ,HINSTANCE hPrevinstance , LPSTR lpcmdLine , int nCmdShow)     //MFC下的程序入口函数WinMain(),传统的dos程序是以main()作为程序入口的，这一点不同
+
+{
+
+                  WNDCLASSwndclass;    //定义窗口类结构体变量
+
+                  HWNDhwnd;  //定义窗口类句柄
+
+                  MSGmsg;        //定义消息结构体变量
+
+ 
+
+                  wndclass.style=CS_HREDRAW|| CS_VREDRAW; //改变窗口大小则重绘
+
+                  wndclass.lpfnWndProc=WindowProc;  //窗口函数为WindowProc()
+
+                  wndclass.cbClsExtra=0; //窗口类无扩展
+
+                  wndclass.cbWndExtra=0;       //窗口实例无扩展
+
+                  wndclass.hInstance=hinstance;     //注册窗口类实例句柄
+
+                  wndclass.hIcon=LoadIcon(NULL,IDI_APPLICATION);          //使用光标箭头
+
+                  wndclass.hCursor=LoadCursor(NULL, IDC_HELP);      //指定鼠标箭头的样式
+
+                  wndclass.hbrBackground=(HBRUSH)GetStockObject(BLACK_BRUSH);               //窗口背景为黑色
+
+                  wndclass.lpszMenuName=NULL;           //窗口默认无菜单
+
+                  wndclass.lpszClassName="Windows窗口创建";         //窗口类名为"Windows窗口创建"
+
+ 
+
+                  if(!RegisterClass(&wndclass))         //此为注册类的函数
+
+                          {
+
+                                   returnfalse;    //注册不成功,返回false
+
+                          }
+
+ 
+
+                  //创建窗口的函数
+
+                  hwnd=CreateWindow("Windows窗口创建" ,     //窗口类名为"Windows窗口创建"
+
+                          "Windows窗口创建",   //窗口的名称为“Windows窗口创建”，即窗口标题栏显示的窗口名称
+
+                          WS_OVERLAPPEDWINDOW, //重叠式窗口
+
+                          CW_USEDEFAULT,CW_USEDEFAULT,    //窗口左上角在屏幕上的默认位置
+
+                          CW_USEDEFAULT,CW_USEDEFAULT,    //窗口的宽度和高度
+
+                          NULL,      //窗口无父类窗口
+
+                          NULL,      //窗口无主菜单
+
+                          hinstance,        //创建此窗口的实例句柄
+
+                          NULL        //此窗口无创建参数
+
+                  );
+
+         ShowWindow(hwnd,nCmdShow); //显示窗口
+
+         UpdateWindow(hwnd);          //不断的更新窗口的客户区
+
+ 
+
+         while(GetMessage(&msg,NULL,0,0))    //捕获消息
+
+         {
+
+                  TranslateMessage(&msg);              //键盘消息转换
+
+                  DispatchMessage(&msg);               //派送消息给窗口函数
+
+         }
+
+         returnmsg.wParam;       //返回退出值
+
+}
+
+ 
+
+LRESULT CALLBACK WindowProc(HWND hwnd,UINTmessage,WPARAM wParam,LPARAM lParam)               //窗口函数
+
+{
+
+         switch(message)
+
+         {
+
+                  caseWM_PAINT:             //重画窗口客户区消息处理
+
+                          HDChdc; //定义设备句柄
+
+                          PAINTSTRUCTps;            //定义绘图结构体变量
+
+                          hdc=BeginPaint(hwnd,&ps);  //获取要重画的窗口的设备描述表句柄
+
+                          TextOut(hdc,15,20,"Windows窗口创建的过程!",22);                //输出到窗口的文本
+
+                          EndPaint(hwnd,&ps);               //结束重画
+
+                          return0;
+
+                  caseWM_DESTROY:               //撤销窗口消息处理
+
+                          PostQuitMessage(0);               //产生退出程序消息WM_QUIT
+
+                          return0; 
+
+         }
+
+         returnDefWindowProc(hwnd,message,wParam,lParam);
+
+}
