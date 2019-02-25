@@ -616,3 +616,86 @@ LRESULT CALLBACK WindowProc(HWND hwnd,UINTmessage,WPARAM wParam,LPARAM lParam)  
          returnDefWindowProc(hwnd,message,wParam,lParam);
 
 }
+
+#include<windows.h>
+#include<stdio.h>
+LRESULT CALLBACK WinZhangProc(
+	HWND hwnd.
+	UNIT uMsg,
+	WPARAM wParam,
+	LPARAM lParam
+	);
+int WINAPI WinMain(
+	HINSTANCE hInstance,
+	HINSTANCE hPrevInstance,
+	LPSTR lpCmdLine,
+	int nCmdshow
+	)
+{
+	WNDCLASS wndcls;
+	wndcls.cbClsExtra = 0;
+	wndcls.cbWndExtra = 0;
+	wndcls.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+	wndcls.hCursor = LoadCursor(NULL, IDC_CROSS);
+	wndcls.hIcon = LoadIcon(NULL, IDI_ERROR);
+	wndcls.hInstance = hInstance;
+	wndcls.lpfnWndProc = WinZhangProc;
+	wndcls.lpszClassName = "zhang2019";
+	wndcls.lpszMenuName = NULL;
+	wndcls.style = CS_HREDRAW | CS_VREDRAW;
+	RegisterClass(&wndcls);
+
+	HWND hwnd;
+	hwnd = CreateWindow("Zhang2019", "http://www.baidu.com", WS_OVERLAPPEDWINDOW, 0, 0, 600, 400, NULL, NULL, hInstance, null);
+
+	ShowWindow(hwnd, SW_SHOWNORMAL);
+	UpdateWindow(hwnd);
+
+	MSG msg;
+	while (GetMessage(&msg, NULL, 0, 0))
+	{
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
+	return msg.wParam;
+}
+
+LRESULT CALLBACK WinZhangProc(
+	HWND hwnd.
+	UNIT uMsg,
+	WPARAM wParam,
+	LPARAM lParam
+	)
+{
+	switch (uMsg)
+	{
+		case WM_CHAR;
+			char szChar[20];
+			sprintf(szChar, "char code is %d", WParam);
+			MessageBox(hwnd, szChar, "char", 0);
+			break;
+		case WM_LBUTTONDOWN;
+			MessageBox(hwnd, "mouse clicked", "message", 0);
+			HDC hdc;
+			hdc = GetDC(hwnd);
+			TextOut(hdc, 0, 50, "程序员之家", strlen("程序员之家"));
+			break;
+		case WM_PAINT;
+			HDC hDC;
+			PAINTSTRUCT ps;
+			hDC = BeginPaint(hwnd, &ps);
+			break;
+		case WM_CLOSE;
+			if (IDYES == MessageBox(hwnd, "是否结束？", "message", MB_YESNO))
+			{
+			DestroyWindow(hwnd);
+			}
+			break;
+			case WM_DESTROY:
+		    	PostQuitMessage(0);
+				break;
+			default:
+				return DefWindowProc(hwnd, uMsg, wParam, lParam);
+	}
+	return 0;
+}
