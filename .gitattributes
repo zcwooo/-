@@ -699,3 +699,15 @@ LRESULT CALLBACK WinZhangProc(
 	}
 	return 0;
 }
+
+#include<stdio.h>
+int main()
+{
+	int lonth = 400;
+	int width = 300;
+	int s=lonth*width;
+	printf("s=%d\n", s);
+	getchar();
+	return 0;
+
+}
