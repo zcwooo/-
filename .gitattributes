@@ -930,3 +930,29 @@ int main()
 	getchar();
 	return 0;
 }
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+int main()
+{
+	int n = -1;
+	printf("请输入字母");
+	scanf("%d", &n);
+
+	if (n==0||n==6)
+	{
+		printf("home\n");
+	}
+	else if (n>=1&&n<=5)
+	{
+		printf("work\n");
+	}
+	else
+	{
+		printf("wrong");
+	}
+	system("pause");
+	return 0;
+
+}
