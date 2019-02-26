@@ -1000,3 +1000,22 @@ int main()
 	return 0;
 
 }
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+int main()
+{
+	int count = 0;
+	int i;
+	for (i = 0; i < 100; i++)
+	{
+		if (i % 2)
+			continue;
+		count++;
+		printf("%d\n",i);
+	}
+	printf("%d\n",count);
+	system("pause");
+	return 0;
+}
