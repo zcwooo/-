@@ -1187,3 +1187,18 @@ int main()
 	system("pause");
 	return 0;
 }
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+int main()
+{
+	double x;
+	double y;
+	printf("please input");
+	scanf("%lf,%lf", &x,&y);
+	double result = x + y;
+	printf("result: %lf\n", result);
+	system("pause");
+	return 0;
+}
