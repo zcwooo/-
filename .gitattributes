@@ -825,3 +825,70 @@ int main()
 	getchar();
 	return 0;
 }
+
+#include<stdio.h>
+int main()
+{
+	char str[120] = {"文件路径：w:\\cprojects\\examples\\test.c"};
+	printf("%s\n",str);
+	getchar();
+	return 0;
+}
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+	char name[10] = "shaofa";
+	strcpy_s(name, 10, "shaodong"); // 修改数组name的内容
+
+	getchar();
+	return 0;
+}
+
+#include<stdio.h>
+int main()
+{
+	int a = 10;
+	int b = 2;
+	a += b-1;
+	printf("%d\n",a);
+	getchar();
+	return 0;
+}
+
+#include<stdio.h>
+int main()
+{
+	int n = 367;
+	char buf[4];
+	buf[2] = n % 10;//7
+	n = n / 10;
+	buf[1] = n% 10;
+	n = n / 10;
+	buf[0] = n % 10;
+	//printf("%d%d%d",buf[0], buf[1]，buf[2]);
+	return 0;
+}
+
+#include<stdio.h>
+int main()
+{
+	printf("%d\n", 0  ?100:200);
+	printf("%d\n", 1  ? 100 : 200);
+	printf("%d\n", -2 ? 100 : 200);
+	getchar();
+	return 0;
+}
+
+#include<stdio.h>
+int main()
+{
+	int score = 57;
+	//printf("input score");
+	//scanf_s("%d", &score);
+	printf("%c\n", score >= 90 ? 'A' :( score<60?'C':'B'));
+	getchar();
+	return 0;
+}
