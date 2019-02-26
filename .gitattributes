@@ -711,3 +711,27 @@ int main()
 	return 0;
 
 }
+
+#include<stdio.h>
+int main()
+{
+	int year = 2019;
+	int month = 1;
+	int day = 1;
+	printf("%d-%02d-%02d",year,month,day);
+	getchar();
+	return 0;
+
+}
+
+#include<stdio.h>
+int main()
+{
+	float r = 10.2;
+	float pai = 3.14;
+	float s=pai*r*r;
+	printf("%.2f",s);
+	getchar();
+	return 0;
+
+}
