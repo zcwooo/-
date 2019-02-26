@@ -807,3 +807,12 @@ int main()
 	getchar();
 	return 0;
 }
+
+
+#include<stdio.h>
+int main()
+{
+	char str[7] = "helloi";
+
+	return 0;
+}
