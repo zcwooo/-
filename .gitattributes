@@ -910,3 +910,23 @@ int main()
 	getchar();
 	return 0;
 }
+
+#include<stdio.h>
+int main()
+{
+	int x = 87;
+	if (x < 60)
+	{
+		printf("c\n");
+	}
+	else if (x < 80)
+	{
+		printf("b\n");
+	}
+	else
+	{
+		printf("c\n");
+	}
+	getchar();
+	return 0;
+}
