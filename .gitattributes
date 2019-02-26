@@ -892,3 +892,13 @@ int main()
 	getchar();
 	return 0;
 }
+
+#include<stdio.h>
+int main()
+{
+	unsigned char m = 181;
+	unsigned char n = ~m;
+	printf("n:%u\n", n);
+	getchar();
+	return 0;
+}
