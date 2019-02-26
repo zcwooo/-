@@ -902,3 +902,11 @@ int main()
 	getchar();
 	return 0;
 }
+
+#include<stdio.h>
+int main()
+{
+	printf("n:%u\n",0xA7>>8);
+	getchar();
+	return 0;
+}
