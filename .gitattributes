@@ -1202,3 +1202,24 @@ int main()
 	system("pause");
 	return 0;
 }
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int main()
+{
+	int a = 0;
+	printf("请输入一个数字");
+	scanf("%d\n",&a);
+	if (a % 2==0)
+	{
+		printf("偶数");
+	}
+	else
+	{
+		printf("奇数");
+	}
+	system("pause");
+	return 0;
+}
