@@ -1356,3 +1356,27 @@ int main()
 	system("pause");
 	return 0;
 }
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int main()
+{
+	int count =0;
+	for (int i = 100; i <=200 ; i++)
+	{
+		if (i%7== 0)
+		{
+			count++;
+			if (count<=10)
+			{
+				printf("%d\n", i);
+			}
+		}
+
+	}
+	system("pause");
+	return 0;
+}
