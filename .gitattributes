@@ -1380,3 +1380,30 @@ int main()
 	system("pause");
 	return 0;
 }
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int main()
+{
+	int year = 2100;
+	if (year%100==0)
+	{
+		if (year%400==0)
+		printf("%d是闰年",year);
+		
+		else
+		printf("%d不是闰年", year);
+	}
+	else
+	{
+		if (year%4==0)
+			printf("%d是闰年", year);
+
+		else
+	    printf("%d不是闰年", year);
+	}
+	system("pause");
+	return 0;
+}
