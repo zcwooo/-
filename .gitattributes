@@ -1407,3 +1407,21 @@ int main()
 	system("pause");
 	return 0;
 }
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int main()
+{
+	for (int i=1; i <=9; i++)
+	{
+		for (int j=i; j <=9; j++)
+		{
+			int aa=i*j;
+			printf("%dx%d=%d\n",i,j,aa);
+		}
+	}
+	system("pause");
+	return 0;
+}
