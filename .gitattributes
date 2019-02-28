@@ -1631,3 +1631,39 @@ int main()
 		system("pause");
 		return 0;
 	}
+
+	#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+unsigned char Hex2Int(char ch)
+{
+	unsigned char val = 0;
+	if (ch >= 'A'&&ch <= 'F')
+		val = 10 + ch - 'A';
+	else if (ch >= 'a'&&ch <= 'f')
+		val = 10 + ch - 'a';
+	else if (ch >= '0'&&ch <= '9')
+		val = ch - '0';
+	return val;
+}
+
+unsigned int Convert(const char*hex, int len)
+{
+	unsigned int result = 0;
+	for (int i = 0; i < len; i++)
+	{
+		result = result * 16 + Hex2Int(hex[i]);
+	}
+	return result;
+}
+int main()
+{
+	char buf[128];
+	printf("请输入字符串");
+	gets(buf);
+	unsigned int value = Convert(buf, strlen(buf));
+	printf("convert result%08x\n", value);
+	system("pause");
+	return 0;
+}
