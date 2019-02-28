@@ -1685,3 +1685,21 @@ int main()
 	system("pause");
 	return 0;
 }
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+void welcome()
+{
+	printf("** C语言快速入门 **\n");
+	printf("** 作者: 邵发\n");	
+	printf("** 官网: http://afanihao.cn ** \n");
+}
+
+int main()
+{
+	welcome();
+	system("pause");
+	return 0;
+}
