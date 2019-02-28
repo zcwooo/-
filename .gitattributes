@@ -1549,3 +1549,27 @@ void test(int a)
 		system("pause");
 		return 0;
 	}
+
+	#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int data[8] = { 1, 2, 3, 4, 5, 6, 7, 8, };
+ double average(...)
+	{
+		int sum = 0;
+		for (int i = 0; i < 8; i++)
+		{
+			sum += data[i];
+		}
+		return sum / 8.0;
+	}
+
+	int main()
+	{
+		double ret = 0;
+			ret = average();
+			printf("%2lf/n", ret);
+		system("pause");
+		return 0;
+	}
