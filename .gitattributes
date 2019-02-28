@@ -1823,3 +1823,26 @@ int main()
 	system("pause");
 	return 0;
 }
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+double  discount(double price)
+{
+	if (price < 30 && price >= 0)
+		return price;
+	if (price < 90 && price >= 30)
+		return price*0.5;
+	if (price >= 00)
+		return price*0.8;
+
+}
+
+int main()
+{
+	double price =60;
+	printf("%.2lf\n", discount(price));
+	system("pause");
+	return 0;
+}
