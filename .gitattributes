@@ -1603,3 +1603,31 @@ int data[8] = { 1, 2, 3, 4, 5, 6, 7, 8, };
 		system("pause");
 		return 0;
 	}
+
+	#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int Sum(int* buf, int n)
+{
+	int total = 0;
+	for (int i = 0; i <n; i++)
+	{
+		total += buf[i];
+	}
+	return total;
+}
+
+int main()
+	{
+		//int result = 0;
+		int buf[64];
+		for (int i = 0; i < 64; i++)
+		{
+			buf[i] = i;
+		}
+		int result = Sum(buf, 64);
+		printf("%d\n",result);
+		system("pause");
+		return 0;
+	}
