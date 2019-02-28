@@ -1703,3 +1703,25 @@ int main()
 	system("pause");
 	return 0;
 }
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+void print()
+{
+	int a = 12;
+	int b = 25;
+	for (int i = a; i <= b;i++)
+		if (i % 5 == 0)
+		{
+			printf("%d\n",i);
+		}
+}
+
+int main()
+{
+	print();
+	system("pause");
+	return 0;
+}
