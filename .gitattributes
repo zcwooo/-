@@ -1938,3 +1938,17 @@ int main()
 	system("pause");
 	return 0;
 }
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int main()
+{
+	int a = 10;
+	int b = 11;
+	int* p = &a;
+	 p = &b;
+	system("pause");
+	return 0;
+}
