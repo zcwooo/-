@@ -1799,3 +1799,27 @@ int main()
 	system("pause");
 	return 0;
 }
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+double  my_abs(double x)
+{
+	if ( x >= 0)
+	{
+		return  x;
+	}
+	else
+	{
+		return  0-x;
+	}
+}
+
+int main()
+{
+	double a = -1.000;
+	printf("%.3lf\n", my_abs(a));
+	system("pause");
+	return 0;
+}
