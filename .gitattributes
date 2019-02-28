@@ -1846,3 +1846,34 @@ int main()
 	system("pause");
 	return 0;
 }
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+bool is_leap_year(int  year)
+{
+	if (year % 100 == 0 && year % 400 == 0)
+		return true;
+	else if (year % 100 != 0 && year % 4 == 0)
+		return true;
+	else 
+		return  false;
+
+}
+
+int main()
+{
+	bool c = is_leap_year(2005);
+	if (c)
+	{
+		printf("是闰年");
+	}
+	else
+	{
+		printf("不是闰年");
+	}
+	
+	system("pause");
+	return 0;
+}
