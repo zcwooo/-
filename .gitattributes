@@ -1529,3 +1529,23 @@ int test()
 		system("pause");
 		return 0;
 	}
+
+	#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+void test(int a)
+	{
+		a += 1;
+		printf("%08x\n", &a);
+	}
+
+	int main()
+	{
+		int n = 10;
+		printf("%08x\n", &n);
+		test(n);
+		printf("%d\n",n);
+		system("pause");
+		return 0;
+	}
