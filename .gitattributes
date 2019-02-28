@@ -1776,3 +1776,26 @@ int main()
 	system("pause");
 	return 0;
 }
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int round(double x)
+{
+	if (x >= 0)
+	{
+		return (int)(x + 0.5);
+	}
+	else
+	{
+		return (int)(x - 0.5);
+	}
+}
+
+int main()
+{
+	printf("%.2f→%d\n",1.1,round(1.1));
+	system("pause");
+	return 0;
+}
