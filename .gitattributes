@@ -2406,3 +2406,27 @@ int main()
 	system("pause");
 	return 0;
 }
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<string.h>
+#include<stdbool.h>
+//定义数据
+struct Triangle
+{
+	int a;
+	int b;
+	int c;
+};
+int main()
+{
+	struct Triangle obj;
+	obj.a = 3;
+	obj.b = 4;
+	obj.c = 5;
+	int zhouchang = obj.a + obj.b + obj.c;
+	printf("%d\n",zhouchang);
+	system("pause");
+	return 0;
+}
