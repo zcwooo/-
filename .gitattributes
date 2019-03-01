@@ -2512,3 +2512,62 @@ int main()
 	system("pause");
 	return 0;
 }
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<string.h>
+#include<stdbool.h>
+//定义数据
+struct Option
+{
+	char answer[100]; // 选项提示文字 
+	bool selected;  // 是否选中
+};
+
+// 题目
+struct Example
+{
+	char question[100];
+	struct Option options[4];
+};
+
+int main()
+{
+	struct Example ex;
+	strcpy_s(ex.question, 100, "你喜欢的编程语言?");
+	
+	// 第1项
+	strcpy_s(ex.options[0].answer, 100, "C");
+	ex.options[0].selected = true;
+
+	// 第2项
+	strcpy_s(ex.options[1].answer, 100, "C++");
+	ex.options[1].selected = true;
+
+	// 第3项
+	strcpy_s(ex.options[2].answer, 100, "Java");
+	ex.options[2].selected = true;
+
+	// 第4项
+	strcpy_s(ex.options[3].answer, 100, "Python");
+	ex.options[3].selected = false;
+
+	//
+	printf("题目: %s \n", ex.question);
+	for (int i = 0; i < 4; i++)
+	{
+		struct Option* po = &ex.options[i];
+
+		// 用一个符号表示是否被选中
+		//char* mark = "■";
+		if (!po->selected)
+		//	mark = "□";
+		printf("■%s\n",  po->answer);
+		else// 显示这一选项
+		printf("□%s\n", po->answer);
+
+	}
+	system("pause");
+	return 0;
+}
