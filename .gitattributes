@@ -2430,3 +2430,26 @@ int main()
 	system("pause");
 	return 0;
 }
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<string.h>
+#include<stdbool.h>
+//定义数据
+struct Student
+{
+	char name[100];   // 姓名
+	bool sex; // 性别(true,男, false, 女)
+	int score; // 考试成绩 (0-100)
+};
+int main()
+{
+	struct Student s;
+	struct Student* ps = &s;
+	strcpy(ps->name, "shaofa");
+	ps->sex = true;
+	printf("%s\n%d\n%d\n",ps->name,ps->sex,ps->score);
+	system("pause");
+	return 0;
+}
