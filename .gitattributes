@@ -2056,3 +2056,134 @@ int main()
     system("pause");
     return 0;
 }
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<string.h>
+#include<stdbool.h>
+//定义数据
+struct Student
+	{
+		int id;
+		char name[16];
+		int scores[3];
+	};
+	Student data[100];
+	int count = 0;
+//定义一个信息输入的函数
+	int input(Student* s)
+	{
+		printf("ID:");
+		scanf("%d\n", &s->id);
+		printf("Name:");
+		gets(s->name);
+		printf("Score:");
+		int a, b, c;
+		scanf("%d,%d,%d", &a, &b, &c);
+		s->scores[0] = a;
+		s->scores[1] = b;
+		s->scores[2] = c;
+		return 0;
+	}
+	Student* find(const char* name)
+	{
+		for (int i = 0; i < count; i++)
+		{
+			Student* s = &data[i];
+			if (strcmp(name, s->name) == 0)
+			{
+				return s;
+			}
+		}
+		return 0;
+	}
+
+	int add(Student* s)
+	{
+		data[count] = *s;
+		count++;
+		return 0;
+	}
+void list_all()
+	{
+		for (int i = 0; i < count; i++)
+		{
+			Student* s = &data[i];
+			printf("%d\n,%s\n,%d\n,%d\n,%d\n",
+				s->id, s->name, s->scores[0], s->scores[1], s->scores[2] );
+		}
+	}
+int test()
+{
+	Student s;
+	//input(&s);
+	s.id = 1024;
+	strcpy(s.name, "shaofa");
+	s.scores[0] = 70;
+	s.scores[1] = 70;
+	s.scores[2] = 70;
+	add(&s);
+	list_all();
+	return 0;
+} 
+void on_add()
+{
+	Student s;
+	input(&s);
+	//s.id = 1024;
+	//strcpy(s.name, "shaofa");
+	//s.scores[0] = 70;
+	//s.scores[1] = 70;
+	//s.scores[2] = 70;
+	//add(&s);
+}
+int main()
+{
+	char cmdline[128];
+	while (1)
+	{
+		printf(">");
+		scanf("%s", cmdline);
+		printf("%s\n", cmdline);
+		if (strcmp(cmdline,"exit") == 0)
+		{
+			printf("now exit...");
+				break;
+		}
+		if (strcmp(cmdline, "add") == 0)
+		{
+			on_add();
+			continue;
+		}
+		if (strcmp(cmdline, "list") == 0)
+		{
+			list_all();
+			continue;
+		}
+		if (strcmp(cmdline, "count") == 0)
+		{
+			printf("%d\n", count);
+			continue;
+		}
+		if (strcmp(cmdline, "find") == 0)
+		{
+			printf("请输入一个名字");
+			char name[16];
+			scanf("%s\n",name);
+			Student* s = find(cmdline);
+			if (s)
+			{
+			printf("%d\n,%s\n,%d\n,%d\n,%d\n",
+					s->id, s->name, s->scores[0], s->scores[1], s->scores[2]);
+			}
+			else
+			{
+				printf("no data");
+			}
+		}
+
+	}
+	system("pause");
+	return 0;
+}
