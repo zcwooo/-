@@ -20,3 +20,10 @@ double型数据不能用于精确比较，int用于精确比较
 8位构成一个字节  int=4字节 char=1字节 
 数组名本身就是数组的地址
 strcpy需要string.h的头文件
+	// 用一个符号表示是否被选中
+		char * mark = "■";
+		if (!po->selected)
+			mark = "□";
+
+		// 显示这一选项
+		printf(" %s %s \n", mark, po->answer);
