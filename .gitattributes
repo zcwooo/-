@@ -2008,3 +2008,26 @@ int main()
     system("pause");
     return 0;
 }
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<string.h>
+#include<stdbool.h>
+struct Contact
+	{
+		int id;
+		char name[16];
+		char phone[16];
+	};
+
+int main()
+{
+	Contact a;
+	a.id = 201501;
+	strcpy(a.name, "john");
+	strcpy(a.phone, "18610112231");
+	printf("%d\n%s\n%s\n", a.id, a.name, a.phone);
+    system("pause");
+    return 0;
+}
