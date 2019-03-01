@@ -2351,3 +2351,35 @@ int test ()
 	list_all();
 	return 0;
 }
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<string.h>
+#include<stdbool.h>
+//定义数据
+struct Music
+	{
+		char singer[16];
+		char name[16];
+		char cd[16];
+		char down_url[16];
+		int hits;
+	};
+int main()
+{
+	Music mp3;
+	strcpy(mp3.singer, "高桥");
+	strcpy(mp3.name, "起风了");
+	strcpy(mp3.cd, "起风了");
+	strcpy(mp3.down_url, "www.baidu.com");
+	mp3.hits = 9999;
+	printf("%s\n",mp3.singer);
+	printf("%s\n", mp3.name);
+	printf("%s\n", mp3.cd);
+	printf("%s\n", mp3.down_url);
+	printf("%d\n", mp3.hits);
+	system("pause");
+	return 0;
+}
