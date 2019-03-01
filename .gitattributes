@@ -2031,3 +2031,28 @@ int main()
     system("pause");
     return 0;
 }
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<string.h>
+#include<stdbool.h>
+struct Contact
+	{
+		int id;
+		char name[16];
+		char phone[16];
+	};
+
+int main()
+{
+	Contact cs[4] =
+	{
+		{ 201501, "one", "10000" },
+		{ 201502, "two", "10001" },
+		{ 201503, "three", "10002" },
+	};
+	printf("%d\n%s\n%s\n", cs[2].id, cs[2].name, cs[2].phone);
+    system("pause");
+    return 0;
+}
