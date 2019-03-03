@@ -2616,3 +2616,26 @@ int main()
 	system("pause");
 	return 0;
 }
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+void a();
+void b();
+void c();
+void a()
+{
+	printf("wqe");
+	b();
+}
+void b()
+{
+	printf("w2e");
+	a();
+}
+int main()
+{
+	a();
+	system("pause");
+	return 0;
+}
