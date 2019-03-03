@@ -2639,3 +2639,16 @@ int main()
 	system("pause");
 	return 0;
 }
+
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main()
+{
+	int a = 12;
+	int* p = &a;
+	printf("a的地址: %p \n", p);
+	system("pause");
+	return 0;
+}
