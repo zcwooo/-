@@ -2870,3 +2870,48 @@ int main()
 	system("pause");
 	return 0;
 }
+
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+void erase(char text[], char del)
+{
+	int len = strlen(text);
+	int count = 0;
+	char* copy = (char*)malloc(len + 1);
+	for (int i = 0; i < len; i++)
+	{
+		char ch = text[i];
+		if (ch != del)
+		{
+			copy[count] = ch;
+			count++;
+		}
+	}
+	copy[count] = 0;
+	strcpy_s(text,12, copy);
+	free(copy);
+}
+int show_string(const char* str)
+{
+	for (int i = 0;; i++)
+	{
+		char ch = str[i];
+		if (ch == 0)
+			break;
+			printf("%c ",ch);
+	}
+	return 0;
+}
+
+
+int main()
+{
+    char str [] = "hello,world";
+	erase(str, 'o');
+	show_string(str);
+	system("pause");
+	return 0;
+}
