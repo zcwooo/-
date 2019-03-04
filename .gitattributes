@@ -2833,3 +2833,14 @@ void remove(int id)
 		cur = cur->next;  // 找到最后一个对象
 	}
 }
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main()
+{
+	const char* str = "hello,world";
+	//printf("",);
+	system("pause");
+	return 0;
+}
