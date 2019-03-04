@@ -2815,3 +2815,21 @@ int insert(Student* obj)
 	pre->next = obj;
 	return 0;
 }
+
+void remove(int id)
+{
+	Student* cur = m_head.next; // 当前节点current
+	Student* pre = &m_head;  // 上一个节点previous
+	while (cur)
+	{
+		if (id == cur->id) // 找到这个位置
+		{
+			// 删除该节点
+			pre->next = cur->next;
+			free(cur);
+			break;
+		}
+		pre = cur;
+		cur = cur->next;  // 找到最后一个对象
+	}
+}
