@@ -2798,3 +2798,20 @@ int main()
 	system("pause");
 	return 0;
 }
+
+
+int insert(Student* obj)
+{
+	Student* cur = m_head.next;
+	Student* pre = &m_head;
+	while (cur)
+	{
+		if (obj->id < cur->id)
+			break;
+		pre = cur;
+		cur = cur->next;
+	}
+	obj->next = pre->next;
+	pre->next = obj;
+	return 0;
+}
