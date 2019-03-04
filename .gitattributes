@@ -2965,3 +2965,12 @@ int main()
 	system("pause");
 	return 0;
 }
+
+
+srand(time(NULL)); 	
+     for(int i=0; i<10; i++)
+	{
+		printf("%d \n", rand());
+	}
+srand: 只需要main()启动时运行一次就够了。不需要每次rand()之前都调用srand。
+
