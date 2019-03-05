@@ -3084,3 +3084,26 @@ size_t fwrite(const void *buf,
 示例：
 char buf[] = "hello";
 fwrite(buf, 1, 5, fp);
+
+#pragma warning( disable : 4996)
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<string.h>
+int main()
+{
+	const char* filename = "d:/aaa.txt";
+	FILE* fp = fopen(filename, "wb");
+	if (fp == NULL)
+	{
+		printf("wrong");
+		return -1;
+	}
+	double a = 3 / 4.0;
+	//fwrite(&a, 1, sizeof(a), fp);
+	char text[16];
+	sprintf(text, "%.2lf", a);
+	fwrite(text, 1, strlen(text), fp);
+	system("pause");
+	return 0;
+}
