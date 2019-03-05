@@ -3107,3 +3107,24 @@ int main()
 	system("pause");
 	return 0;
 }
+#pragma warning( disable : 4996)
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+int main()
+{
+	const char* filename = "d:/aaa.txt";
+	FILE* fp = fopen(filename, "wb");
+	if (fp == NULL)
+	{
+		printf("wrong");
+		return -1;
+	}
+	char buf[16] = "hello";
+	char buf1[16] = "abcd";
+	fwrite(buf, 1, 16, fp);
+	fwrite(buf1, 1, 16, fp);
+	system("pause");
+	return 0;
+}
+
