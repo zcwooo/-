@@ -3156,3 +3156,15 @@ int main()
 	system("pause");
 	return 0;
 }
+
+4. 如何实现“追加写入”？append
+使用"wb"方式写入时，每次写得的东西都把原有的东西覆盖了。。。
+解决办法：使用  "ab" 作为参数  (append binary)
+	FILE* fp = fopen(filename, "ab" );
+	if(fp == NULL)
+	{
+		printf("failed to open file!\n");
+	}
+使用"wb"模式时，每次打开文件都先清空原有的内容。（即使你不写入新东西，原有的数据也被清空了）
+
+使用"ab"模式时，每次打开文件不清空原有内容，新内容追加在末尾
