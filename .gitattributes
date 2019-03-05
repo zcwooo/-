@@ -3220,3 +3220,4 @@ char buf[4];
 	 char buf[128];
    sprintf("%d,%d", a, b); // 以逗号分隔
    fwrite(buf, 1, strlen(buf), fp);
+
