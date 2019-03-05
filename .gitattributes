@@ -3216,3 +3216,7 @@ char buf[4];
 	 	printf("read %d bytes \n", n);
 	 	}		
 	}
+
+	 char buf[128];
+   sprintf("%d,%d", a, b); // 以逗号分隔
+   fwrite(buf, 1, strlen(buf), fp);
