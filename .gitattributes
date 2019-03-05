@@ -3022,3 +3022,11 @@ int main()
 	system("pause");
 	return 0;
 }
+
+time_t: 自1970年1月1日的秒值
+
+tm: 
+
+localtime: time_t 转成 “年月日时分秒”
+
+mktime: “年月日时分秒”转成time_t
