@@ -2981,3 +2981,14 @@ srand: 只需要main()启动时运行一次就够了。不需要每次rand()之�
 其中，60是区间长度
 
 
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+int main()
+{
+	time_t now = time(NULL);
+	printf("%d\n",(int)now);
+	system("pause");
+	return 0;
+}
