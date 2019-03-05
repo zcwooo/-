@@ -27,3 +27,21 @@ strcpy需要string.h的头文件
 
 		// 显示这一选项
 		printf(" %s %s \n", mark, po->answer);
+		#pragma warning( disable : 4996)
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+int main()
+{
+	const char* filename = "d:/aaa.txt";
+	FILE* fp = fopen(filename, "wb");
+	if (fp == NULL)
+	{
+		printf("wrong");
+		return -1;
+	}
+	double a = 3 / 4.0;
+	fwrite(&a, 1, sizeof(a), fp);
+	system("pause");
+	return 0;
+}
