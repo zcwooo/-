@@ -3067,3 +3067,20 @@ int fclose(FILE* stream);
 
 示例：
 fclose(fp);
+
+
+（3） fwrite: 写入数据
+size_t fwrite(const void *buf, 
+     size_t size, size_t count, 
+     FILE *stream);
+
+参数: stream就是前面fopen的返回值
+    buf, 要写入的数据
+    size,总是传1
+    count, 字节数
+
+返回值 ：字节数
+
+示例：
+char buf[] = "hello";
+fwrite(buf, 1, 5, fp);
