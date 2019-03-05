@@ -3128,3 +3128,31 @@ int main()
 	return 0;
 }
 
+#pragma warning(disable : 4996)
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<string.h>
+struct Student
+{
+	char gender; // 性别
+	int id; // id
+	char name[16]; // 年龄
+};
+int main()
+{
+	const char* filename = "d:/aaa.txt";
+	FILE* fp = fopen(filename, "wb");
+	if (fp == NULL)
+	{
+		printf("wrong");
+		return -1;
+	}
+	Student someone = { 20150101, 'M', "Noname" };
+	fwrite(&someone.gender, 1, 4, fp);
+	fwrite(&someone.id, 1, 1, fp);
+	fwrite(&someone.name, 1, 16, fp);
+	fclose(fp);
+	system("pause");
+	return 0;
+}
