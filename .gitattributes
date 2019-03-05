@@ -3206,3 +3206,13 @@ int load()
 	fclose(fp);
 	return 0;
 }
+
+char buf[4];
+	while(! feof (fp)) 
+	{
+	 	int n = fread (buf, 1, 4, fp);
+	 	if( n > 0)
+		{
+	 	printf("read %d bytes \n", n);
+	 	}		
+	}
