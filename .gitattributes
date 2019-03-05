@@ -3354,3 +3354,9 @@ const char* filename = "d:/aaa.txt";
 
 	sprintf(line, "port=%d\n", port);
 	fwrite(line, 1, strlen(line), fp);
+
+	char ip[] = "192.168.1.100";
+	int port = 8081;
+
+	fprintf(fp, "ip=%s\n", ip);
+	fprintf(fp, "port=%d\n", port);
