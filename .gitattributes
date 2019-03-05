@@ -3059,3 +3059,11 @@ if(fp == NULL)
     printf("failed to open file!\n");
     return -1;
 }
+
+（2） fclose: 关闭文件
+int fclose(FILE* stream);
+
+参数: stream就是前面fopen的返回值
+
+示例：
+fclose(fp);
