@@ -3008,3 +3008,17 @@ int main()
 	system("pause");
 	return 0;
 }
+#pragma warning( disable : 4996)
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+int main()
+{
+	time_t now = time(NULL);//当前时间
+	now += 300 * 24 * 3600;
+	tm info = *localtime(&now);
+
+
+	system("pause");
+	return 0;
+}
