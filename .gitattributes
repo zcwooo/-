@@ -3030,3 +3030,22 @@ tm:
 localtime: time_t 转成 “年月日时分秒”
 
 mktime: “年月日时分秒”转成time_t
+
+
+#pragma warning( disable : 4996)
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+int main()
+{
+	const char* filename = "d:/aaa.txt";
+	FILE* fp = fopen(filename, "wb");
+	if (fp == NULL)
+	{
+		printf("wrong");
+		return -1;
+	}
+
+	system("pause");
+	return 0;
+}
