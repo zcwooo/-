@@ -3168,3 +3168,41 @@ int main()
 使用"wb"模式时，每次打开文件都先清空原有的内容。（即使你不写入新东西，原有的数据也被清空了）
 
 使用"ab"模式时，每次打开文件不清空原有内容，新内容追加在末尾
+
+int load()
+{
+	const char* filename = "d:/aaa.txt";
+	FILE* fp = fopen(filename, "rb");
+	if (fp == NULL)
+	{
+		printf("failed to open file!\n");
+		return -1;
+	}
+
+	// 	char buf[128];
+	// 	int n = fread(buf, 1, 128, fp);
+
+	// 	char buf[4];
+	// 	while(! feof (fp)) 
+	// 	{
+	// 		int n = fread (buf, 1, 4, fp);
+	// 		if( n > 0)
+	// 		{
+	// 			printf("read %d bytes \n", n);
+	// 		}		
+	// 	}
+
+	char buf[128];
+	int n = fread(buf, 1, 128, fp);
+	/*while (1)
+	{
+		char* line = fgets(buf, sizeof(buf), fp);
+		if (!line)
+			break;
+
+		printf("%s", line);
+	}*/
+
+	fclose(fp);
+	return 0;
+}
