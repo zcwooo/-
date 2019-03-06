@@ -3420,3 +3420,7 @@ int main()
 	system("pause");
 	return 0;
 }
+
+.h文件放  放结构体定义 函数接口
+cpp文件放 函数实现 include头文件
+主文件（main）只放基本调用和include头文件
