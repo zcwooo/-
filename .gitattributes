@@ -3381,3 +3381,19 @@ const char* filename = "d:/aaa.txt";
 
 	fclose(fp);
 	return 0;
+
+#include<stdio.h>
+#include<stdlib.h>
+extern double get_area(double r);
+int main()
+{
+	double r;
+	printf("enter r: ");
+	scanf_s("%lf", &r);
+
+	double area = get_area(r);
+	printf("result: %.3lf\n", area);
+	system("pause");
+	return 0;
+}
+
