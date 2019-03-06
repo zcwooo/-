@@ -75,3 +75,5 @@ int main()
 	system("pause");
 	return 0;
 }
+
+ error : Element <SubSystem> has an invalid value of "CONSOLE(/SUBSYSTEM:CONSOLE)".
