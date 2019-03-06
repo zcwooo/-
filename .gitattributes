@@ -77,3 +77,14 @@ int main()
 }
 
  error : Element <SubSystem> has an invalid value of "CONSOLE(/SUBSYSTEM:CONSOLE)".
+
+  fatal error LNK1120: 1 个无法解析的外部命令
+  #include<stdio.h>
+#define PI 3.14  
+int main()
+{
+	double r = 1.2;
+	double area = PI * r * r;
+	system("pause");
+	return 0;
+}
