@@ -3424,3 +3424,25 @@ int main()
 .h文件放  放结构体定义 函数接口
 cpp文件放 函数实现 include头文件
 主文件（main）只放基本调用和include头文件
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+class Object 
+{
+public:  
+	int x; 
+	int y;   
+	void Test() 
+	{ printf("hello,world!\n"); } 
+};
+
+
+void main()
+{
+	Object obj;
+	obj.Test();  // 点号 .  
+	Object* p = &obj; 
+	p->Test();  // 箭头 ->
+	system("pause");
+}
