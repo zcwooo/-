@@ -3599,3 +3599,17 @@ void main()
 	system("pause");
 //	return 0;
 }
+
+把class的成员函数的定义写在class之外，即class的大括号的外面。
+
+例如，
+///////////  main.cpp ////////////
+class Object
+{
+public:
+   int x;
+   void Test(); // (1) 成员函数的声明
+};
+void Object::Test() //(2) 成员函数写在外边，加上类名限定
+{
+}
