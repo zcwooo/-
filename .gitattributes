@@ -3446,3 +3446,27 @@ void main()
 	p->Test();  // 箭头 ->
 	system("pause");
 }
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+class Object 
+{
+public:  
+	int x; 
+	int y;   
+	void Test()   
+	{
+		printf("x=%d, y=%d\n", this->x, this->y); 
+	}
+};
+
+
+void main()
+{
+	Object obj;
+	obj.x = 10;
+	obj.y = 20;
+	obj.Test();
+	system("pause");
+}
