@@ -1,22 +1,3725 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+vs2013 引用外部程序 exe文件和debug（release）放在同一文件夹
+{
+    TCHAR lpBin[MAX_PATH];
+	InitPath(lpBin, NULL, NULL);
+	CString name = _T("MicroScope.exe");
+	ShellExecute(NULL, _T("open"), name, NULL, lpBin, SW_SHOWNORMAL);
+}
 
-这是一个学习笔记，所有关于学习的记录都会在这里。
-2018.11.28 粗略学习了c标准库，这本书太难，不适合现在的我，准备学基础的c++
-购买了c++ primer第五版，90元，开始学习
-第一天学习学个屁，20181129
-const是一个限定符，被它修饰的变量的值不能改变。对于一般的变量来说，其实没有顶层const和底层const的区别，而只有向指针这类复合类型的基本变量，才有这样的区别。
-C++有类模板，也有函数模板，vector是一个类模板，模板不是类，但是编译器根据模板创建类。需要指定一些信息，来使模板来实例化为类，形式为模板名字+尖括号+尖括号内信息。
-迭代器用来访问string内的元素或者vector的元素，vector和string都支持下标运算符，也都支持迭代器。
-const_iterator和常量指针差不多，能读取而不能修改它所指的元素值，iterator可读可写。
-*解引用 .成员访问  it→mem 等价于 (*it).mem，已知的限制是不能在for循环内向迭代器添加元素，也不能进行改变对象容量的操作，否则会使其失效。
-数组和vector的区别在于，数组没有名字，通过位置来访问，而且大小一定，不能随意改变，在一些程序里面性能较好，但是也损失了一些灵活性。
-使用for循环下标来访问数组。
-这傻逼东西老子有点醉 好几把男
-double型数据不能用于精确比较，int用于精确比较
-函数重载只比较参数个数和参数类型 若相同 则为相同函数
-在函数调试时确定具体的问题 然后单步调试或者进步函数内部调试
-每次测试之后都要对函数模块进行充分调试
-8位构成一个字节  int=4字节 char=1字节 
-数组名本身就是数组的地址
-strcpy需要string.h的头文件
+vs2013 most basic c++ show string
+#include<iostream>
+int main()
+{
+	std::cout << "Enter two numbers:" << std::endl;
+
+	int v1 = 0, v2 = 0;
+	std::cin >> v1 >> v2;
+	std::cout << "The sum of " << v1 << " and " << v2
+		<< " is " << v1 + v2 << std::endl;
+	return 0;
+}
+
+vs2013 简单的加和显示 while语句（return 0 不间断点 无法显示）
+#include <iostream>
+int main()
+{
+	int sum = 0, val = 1;
+	while (val<=10)
+	{
+		sum += val;
+		++val;
+	}
+	std::cout << "Sum of 1 to 10 is" << sum << std::endl;
+	return 0;
+}
+
+
+
+vs加和显示 for循环 （解决了 运行无法显示的问题 加上 system("pasuse") 即可 ）
+#include <iostream>
+int main()
+{
+	int sum = 0;
+	for (int val = 1; val <= 10;++val)
+	sum += val;
+	std::cout << "Sum of 1 to 10 is" << sum << std::endl;
+	system("pause");
+	return 0;
+}
+
+#include <iostream>
+int main()
+{
+	int sum = 0, value = 0;
+	
+	while (std::cin >> value)
+	{
+		sum += value;
+	}
+	std::cout << "Sum  is" << sum << std::endl;
+	system("pause");
+	return 0;
+}
+
+#include<iostream>
+int main()
+{
+	int currVal = 0, val = 0;
+
+	if (std::cin>>currVal)
+	{
+		int cnt = 1;
+		while (std::cin >> val)
+		{ 
+			if (val == currVal)
+				++cnt;
+			else
+			{
+				std::cout << currVal << " occurs " << cnt << " times "<<std::endl;
+				currVal = val;
+				cnt = 1;
+			}
+		}
+		std::cout << currVal << " occurs " << cnt << " times " << std::endl;
+	}
+	system("pause");
+	return 0;
+}
+
+类：定义了一个类型，以及与其相关联的一组操作，是c++最重要的特性之一。
+对于书店程序，定义类名为Sale_item
+头文件 Sale_item.h中已经定义了。
+为了使用标准库，，必须包相应的头文件。
+我们可以定义类类型的变量，类定义了对类的对象你可以执行的操作。
+标准库头文件使用<>,非标准库使用 ""
+
+库的相关操作 默认搜索默认目录下 把.h文件包括过去即可
+#include<iostream>
+#include"Sales_item.h"
+int main()
+{
+	Sales_item item1, item2;
+	std::cin >> item1 >> item2;
+	std::cout << item1 + item2 << std::endl;
+	system("pause");
+	return 0;
+}
+
+#include<iostream>
+#include"Sales_item.h"
+int main()
+{
+	Sales_item total;
+	if (std::cin >> total)
+	{
+		Sales_item trans;
+		while (std::cin >> trans)
+		{
+			if (total.isbn() == trans.isbn())
+				total = total + trans;
+			else{
+				std::cout << total << std::endl;
+			    }
+		}
+		std::cout << total << std::endl;
+	}
+	else{
+		std::cout << "Your input is wrong" << std::endl;
+		return -1;
+	}
+	system("pause");
+	return 0;
+}
+
+struct Sales_data {
+	std::string bookNo;
+	unsigned units_sold = 0;
+	double revenue = 0.0;
+
+};
+
+#include<iostream>
+using std::cin;
+using std::cout;
+int main()
+{
+	int i;
+	cin >> i;
+	cout << i;
+	system("pause");
+	return 0;
+}
+
+#include<iostream>
+using std::cin;
+using std::cout;
+using std::endl;
+int main()
+{
+	cout << "Enter two numbers" << endl;
+	int v1, v2;
+	cin >> v1 >> v2;
+	cout << "the number of " << v1 << "and" << v2 << "is" << v1+v2<<endl;
+	system("pause");
+	return 0;
+}
+
+  #include<iostream>
+#include<string>
+using std::string;
+using std::cin;
+using std::cout;
+using std::endl;
+int main()
+{
+	string s;
+	cin >> s;
+	cout << s << endl;
+	system("pause");
+	return 0;
+}
+
+#include<iostream>
+#include<string>
+using std::string;
+using std::cin;
+using std::cout;
+using std::endl;
+int main()
+{
+	string word;
+	while (cin >> word)
+		cout << word << endl;
+	system("pause");
+	return 0;
+}
+
+#include<iostream>
+#include<string>
+using std::string;
+using std::cin;
+using std::cout;
+using std::endl;
+int main()
+{
+	string str("some string");
+	for (auto c : str)
+		cout <<  c << endl;
+	system("pause");
+	return 0;
+
+}
+
+#include<iostream>
+#include<string>
+using std::string;
+using std::cin;
+using std::cout;
+using std::endl;
+int main()
+{
+	string s("Hello world!!");
+	decltype(s.size()) punct_cnt = 0;
+	for (auto c : s)
+		if (ispunct(c))
+			++punct_cnt;
+		cout <<  punct_cnt<<"punctuation characters is in the "<<s<< endl;
+	system("pause");
+	return 0;
+
+}
+
+#include<iostream>
+#include<string>
+using std::string;
+using std::cin;
+using std::cout;
+using std::endl;
+int main()
+{
+	string s("Hello world!!");
+	for (auto &c : s)
+		c = toupper(c);
+		cout << s<< endl;
+	system("pause");
+	return 0;
+
+}
+
+#include<iostream>
+#include<string>
+using std::string;
+using std::cin;
+using std::cout;
+using std::endl;
+int main()
+{
+	string s("Hello world!!");
+	for (
+		decltype(s.size()) index = 0;
+		index != s.size() && ! isspace (s[index]); ++index)
+	s[index] = toupper(s[index]);
+			cout << s << endl;
+	system("pause");
+	return 0;
+
+}
+
+  #include<iostream>
+#include<string>
+using std::string;
+using std::cin;
+using std::cout;
+using std::endl;
+int main()
+{
+	string s("0123456789ABCDEF");
+	cout << "Enter a  series of numbers between 0 and 15 separted by spaces. Hit Enter when finished" << endl;
+	string result;
+	string::size_type n;
+	while (cin >> n)
+	if (n < s.size())
+		result = result + s[n];
+			cout << "Your result is " <<result<< endl;
+	system("pause");
+	return 0;
+}
+
+#include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{
+	vector<int>v;
+	int num;
+	cin >> num;
+	int a;
+	for (int i = 0; i < num; i++)
+	{
+		cin >> a;
+		v.push_back(a);
+	}
+	for (auto i : v)
+	{
+		cout << i << endl;
+	}
+}
+  
+  #include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{
+	vector<int>v{1,2,3,4,5,6,7,8,9};
+	for (auto &i : v)
+		i = i*i;
+	for (auto &i : v)
+		cout << i << endl;
+	system("pause");
+	return 0;
+}
+
+#include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{
+	vector <unsigned> scores(11, 0);
+	unsigned grade;
+	while (cin >> grade)
+	{
+		if (grade <= 100)
+			++scores[grade / 10];
+	}
+	for (int i = 0; i < scores.size(); i++)
+	{
+		cout << scores[i] << endl;
+	}
+	system("pause");
+	return 0;
+}
+
+#include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{
+	string s("some string");
+	if (s.begin() != s.end())
+	{
+		auto it = s.begin();
+		*it = toupper(*it);
+
+	}
+	for (int i = 0; i < s.size(); i++)
+	{
+		cout << s[i] << endl;
+	}
+	system("pause");
+	return 0;
+}
+
+#include<iostream>
+#include<vector>
+#include <string>
+using namespace std;
+int main()
+{
+	cout << "输入一个整数: ";
+	int grade;
+	cin >> grade ;
+	const vector<string> scores = { "F", "D", "C", "B", "A", "A++" };
+	string graderesult;
+	if (grade < 60)
+		graderesult = scores[0];
+	else{
+		graderesult = scores[(grade - 50) / 10];
+		if (grade != 100)
+			if (grade % 10 > 7)
+				graderesult = graderesult + "++";
+			else if(grade % 10 < 3)
+			graderesult = graderesult + "--";
+		}
+	cout << graderesult << endl;
+	system("pause");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+	return 0;
+}
+
+#include<iostream>
+#include<vector>
+#include <string>
+using namespace std;
+int main()
+{
+	cout << "输入一串字符: " << endl;
+	unsigned acnt = 0, ecnt = 0, icnt = 0, ocnt = 0, ucnt = 0;
+	char ch;
+	while (cin >> ch)
+	{
+		switch (ch)
+		{
+		case 'a':
+			++acnt;
+			break;
+		case 'e':
+			++ecnt;
+			break;
+		case 'i':
+			++icnt;
+			break;
+		case 'o':
+			++ocnt;
+			break;
+		case 'u':
+			++ucnt;
+			break;
+		}
+
+	}
+	cout << "Number of a is" << acnt << '\n' << "Number of e is" << ecnt << '\n' << "Number of i is" << icnt << '\n' << "Number of o is" << ocnt << '\n' << "Number of u is" << ucnt << endl;
+	system("pause");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+	return 0;
+}
+
+#include<iostream>
+using namespace std;
+int fact(int val)
+	{
+		int ret = 1;
+		while (val > 1)
+			ret = ret*val--;
+		return ret;
+	}
+	
+int fact(int);
+int main()
+{
+
+	int j = fact(5);
+	cout << "the result is " << j << endl;
+	system("pause");
+	return 0;
+}
+
+
+#include<iostream>
+#include<string>
+using namespace std;
+char &get_val(string &str, string::size_type ix)
+{
+	return str[ix];
+}
+int main()
+{
+	string s("a value");
+	get_val(s, 1) = 's';
+	cout << s << endl;
+
+	system("pause");
+	return 0;
+}
+
+
+flag = False
+name = 'luren'
+if name == 'python':         # 判断变量否为'python'
+    flag = True          # 条件成立时设置标志为真
+    print ('welcome boss')    # 并输出欢迎信息
+else:
+    print ('name')              # 条件不成立时输出变量名称
+	# 例3：if语句多个条件
+ 
+num = 9
+if num >= 0 and num <= 10:    # 判断值是否在0~10之间
+    print 'hello'
+# 输出结果: hello
+ 
+num = 10
+if num < 0 or num > 10:    # 判断值是否在小于0或大于10
+    print 'hello'
+else:
+    print 'undefine'
+# 输出结果: undefine
+ 
+num = 8
+# 判断值是否在0~5或者10~15之间
+if (num >= 0 and num <= 5) or (num >= 10 and num <= 15):    
+    print 'hello'
+else:
+    print 'undefine'
+# 输出结果: undefine
+
+#include<windows.h>    //包含windows.h头文件
+
+LRESULT CALLBACK WindowProc( HWND , UINT ,WPARAM , LPARAM ); //声明窗口函数
+
+ 
+
+int APIENTRY WinMain(HINSTANCE hinstance ,HINSTANCE hPrevinstance , LPSTR lpcmdLine , int nCmdShow)     //MFC下的程序入口函数WinMain(),传统的dos程序是以main()作为程序入口的，这一点不同
+
+{
+
+                  WNDCLASSwndclass;    //定义窗口类结构体变量
+
+                  HWNDhwnd;  //定义窗口类句柄
+
+                  MSGmsg;        //定义消息结构体变量
+
+ 
+
+                  wndclass.style=CS_HREDRAW|| CS_VREDRAW; //改变窗口大小则重绘
+
+                  wndclass.lpfnWndProc=WindowProc;  //窗口函数为WindowProc()
+
+                  wndclass.cbClsExtra=0; //窗口类无扩展
+
+                  wndclass.cbWndExtra=0;       //窗口实例无扩展
+
+                  wndclass.hInstance=hinstance;     //注册窗口类实例句柄
+
+                  wndclass.hIcon=LoadIcon(NULL,IDI_APPLICATION);          //使用光标箭头
+
+                  wndclass.hCursor=LoadCursor(NULL, IDC_HELP);      //指定鼠标箭头的样式
+
+                  wndclass.hbrBackground=(HBRUSH)GetStockObject(BLACK_BRUSH);               //窗口背景为黑色
+
+                  wndclass.lpszMenuName=NULL;           //窗口默认无菜单
+
+                  wndclass.lpszClassName="Windows窗口创建";         //窗口类名为"Windows窗口创建"
+
+ 
+
+                  if(!RegisterClass(&wndclass))         //此为注册类的函数
+
+                          {
+
+                                   returnfalse;    //注册不成功,返回false
+
+                          }
+
+ 
+
+                  //创建窗口的函数
+
+                  hwnd=CreateWindow("Windows窗口创建" ,     //窗口类名为"Windows窗口创建"
+
+                          "Windows窗口创建",   //窗口的名称为“Windows窗口创建”，即窗口标题栏显示的窗口名称
+
+                          WS_OVERLAPPEDWINDOW, //重叠式窗口
+
+                          CW_USEDEFAULT,CW_USEDEFAULT,    //窗口左上角在屏幕上的默认位置
+
+                          CW_USEDEFAULT,CW_USEDEFAULT,    //窗口的宽度和高度
+
+                          NULL,      //窗口无父类窗口
+
+                          NULL,      //窗口无主菜单
+
+                          hinstance,        //创建此窗口的实例句柄
+
+                          NULL        //此窗口无创建参数
+
+                  );
+
+         ShowWindow(hwnd,nCmdShow); //显示窗口
+
+         UpdateWindow(hwnd);          //不断的更新窗口的客户区
+
+ 
+
+         while(GetMessage(&msg,NULL,0,0))    //捕获消息
+
+         {
+
+                  TranslateMessage(&msg);              //键盘消息转换
+
+                  DispatchMessage(&msg);               //派送消息给窗口函数
+
+         }
+
+         returnmsg.wParam;       //返回退出值
+
+}
+
+ 
+
+LRESULT CALLBACK WindowProc(HWND hwnd,UINTmessage,WPARAM wParam,LPARAM lParam)               //窗口函数
+
+{
+
+         switch(message)
+
+         {
+
+                  caseWM_PAINT:             //重画窗口客户区消息处理
+
+                          HDChdc; //定义设备句柄
+
+                          PAINTSTRUCTps;            //定义绘图结构体变量
+
+                          hdc=BeginPaint(hwnd,&ps);  //获取要重画的窗口的设备描述表句柄
+
+                          TextOut(hdc,15,20,"Windows窗口创建的过程!",22);                //输出到窗口的文本
+
+                          EndPaint(hwnd,&ps);               //结束重画
+
+                          return0;
+
+                  caseWM_DESTROY:               //撤销窗口消息处理
+
+                          PostQuitMessage(0);               //产生退出程序消息WM_QUIT
+
+                          return0; 
+
+         }
+
+         returnDefWindowProc(hwnd,message,wParam,lParam);
+
+}
+
+#include<windows.h>
+#include<stdio.h>
+LRESULT CALLBACK WinZhangProc(
+	HWND hwnd.
+	UNIT uMsg,
+	WPARAM wParam,
+	LPARAM lParam
+	);
+int WINAPI WinMain(
+	HINSTANCE hInstance,
+	HINSTANCE hPrevInstance,
+	LPSTR lpCmdLine,
+	int nCmdshow
+	)
+{
+	WNDCLASS wndcls;
+	wndcls.cbClsExtra = 0;
+	wndcls.cbWndExtra = 0;
+	wndcls.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+	wndcls.hCursor = LoadCursor(NULL, IDC_CROSS);
+	wndcls.hIcon = LoadIcon(NULL, IDI_ERROR);
+	wndcls.hInstance = hInstance;
+	wndcls.lpfnWndProc = WinZhangProc;
+	wndcls.lpszClassName = "zhang2019";
+	wndcls.lpszMenuName = NULL;
+	wndcls.style = CS_HREDRAW | CS_VREDRAW;
+	RegisterClass(&wndcls);
+
+	HWND hwnd;
+	hwnd = CreateWindow("Zhang2019", "http://www.baidu.com", WS_OVERLAPPEDWINDOW, 0, 0, 600, 400, NULL, NULL, hInstance, null);
+
+	ShowWindow(hwnd, SW_SHOWNORMAL);
+	UpdateWindow(hwnd);
+
+	MSG msg;
+	while (GetMessage(&msg, NULL, 0, 0))
+	{
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
+	return msg.wParam;
+}
+
+LRESULT CALLBACK WinZhangProc(
+	HWND hwnd.
+	UNIT uMsg,
+	WPARAM wParam,
+	LPARAM lParam
+	)
+{
+	switch (uMsg)
+	{
+		case WM_CHAR;
+			char szChar[20];
+			sprintf(szChar, "char code is %d", WParam);
+			MessageBox(hwnd, szChar, "char", 0);
+			break;
+		case WM_LBUTTONDOWN;
+			MessageBox(hwnd, "mouse clicked", "message", 0);
+			HDC hdc;
+			hdc = GetDC(hwnd);
+			TextOut(hdc, 0, 50, "程序员之家", strlen("程序员之家"));
+			break;
+		case WM_PAINT;
+			HDC hDC;
+			PAINTSTRUCT ps;
+			hDC = BeginPaint(hwnd, &ps);
+			break;
+		case WM_CLOSE;
+			if (IDYES == MessageBox(hwnd, "是否结束？", "message", MB_YESNO))
+			{
+			DestroyWindow(hwnd);
+			}
+			break;
+			case WM_DESTROY:
+		    	PostQuitMessage(0);
+				break;
+			default:
+				return DefWindowProc(hwnd, uMsg, wParam, lParam);
+	}
+	return 0;
+}
+
+#include<stdio.h>
+int main()
+{
+	int lonth = 400;
+	int width = 300;
+	int s=lonth*width;
+	printf("s=%d\n", s);
+	getchar();
+	return 0;
+
+}
+
+#include<stdio.h>
+int main()
+{
+	int year = 2019;
+	int month = 1;
+	int day = 1;
+	printf("%d-%02d-%02d",year,month,day);
+	getchar();
+	return 0;
+
+}
+
+#include<stdio.h>
+int main()
+{
+	float r = 10.2;
+	float pai = 3.14;
+	float s=pai*r*r;
+	printf("%.2f",s);
+	getchar();
+	return 0;
+
+}
+
+#include<stdio.h>
+int main()
+{
+	char arr[5][3] =
+	{
+		{ 1, 2, 3 },
+		{ 1, 2, 3 },
+		{ 1, 2, 3 },
+		{ 1, 2, 3 },
+		{ 1, 2, 3 },
+	};
+	getchar();
+	return 0;
+
+}
+
+#include<stdio.h>
+int main()
+{
+	char arr[5] = { 7, 7, 8, 10, 3 };
+	printf("%d,%d,%d,%d,%d\n", arr[0], arr[1], arr[2], arr[3], arr[4]);
+	getchar();
+	return 0;
+
+}
+
+#include<stdio.h>
+int main()
+{
+	int arr[5] = { 29,90,12,3,8 };
+	int s = arr[0];
+	arr[0] = arr[4];
+	arr[4] = s;
+	printf("%d,%d,%d,%d,%d\n", arr[0], arr[1], arr[2], arr[3], arr[4]);
+	getchar();
+	return 0;
+
+}
+
+#include<stdio.h>
+int main()
+{
+	int arr[5] = { 29,-33,32,3,-80};
+	int max = arr[0];
+	int max_index = 0;
+	for (int i = 1; i < 4; i++)
+	{
+		if (arr[i] > max)
+		{
+			max = arr[i];
+			max_index = i+1;
+		}
+	}
+	printf("第%d个数的最大值为%d", max_index, max);
+	getchar();
+	return 0;
+}
+
+#include<stdio.h>
+int main()
+{
+	int arr[5] = { 29, 90, 12, 3, 8 };
+	int sum = 1;
+	for (int i = 0; i < 5; i++)
+	{
+		sum *= arr[i];
+	}
+	printf("%d",sum);
+	getchar();
+	return 0;
+}
+
+
+#include<stdio.h>
+int main()
+{
+	char str[7] = "helloi";
+
+	return 0;
+}
+
+#include<stdio.h>
+int main()
+{
+	char str[] = "hello";
+	printf("str:%s",str);
+	getchar();
+	return 0;
+}
+
+#include<stdio.h>
+int main()
+{
+	char str[120] = {"文件路径：w:\\cprojects\\examples\\test.c"};
+	printf("%s\n",str);
+	getchar();
+	return 0;
+}
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+	char name[10] = "shaofa";
+	strcpy_s(name, 10, "shaodong"); // 修改数组name的内容
+
+	getchar();
+	return 0;
+}
+
+#include<stdio.h>
+int main()
+{
+	int a = 10;
+	int b = 2;
+	a += b-1;
+	printf("%d\n",a);
+	getchar();
+	return 0;
+}
+
+#include<stdio.h>
+int main()
+{
+	int n = 367;
+	char buf[4];
+	buf[2] = n % 10;//7
+	n = n / 10;
+	buf[1] = n% 10;
+	n = n / 10;
+	buf[0] = n % 10;
+	//printf("%d%d%d",buf[0], buf[1]，buf[2]);
+	return 0;
+}
+
+#include<stdio.h>
+int main()
+{
+	printf("%d\n", 0  ?100:200);
+	printf("%d\n", 1  ? 100 : 200);
+	printf("%d\n", -2 ? 100 : 200);
+	getchar();
+	return 0;
+}
+
+#include<stdio.h>
+int main()
+{
+	int score = 57;
+	//printf("input score");
+	//scanf_s("%d", &score);
+	printf("%c\n", score >= 90 ? 'A' :( score<60?'C':'B'));
+	getchar();
+	return 0;
+}
+
+#include<stdio.h>
+int main()
+{
+	unsigned char m = 181;
+	unsigned char n = ~m;
+	printf("n:%u\n", n);
+	getchar();
+	return 0;
+}
+
+#include<stdio.h>
+int main()
+{
+	printf("n:%u\n",0xA7>>8);
+	getchar();
+	return 0;
+}
+
+#include<stdio.h>
+int main()
+{
+	int x = 87;
+	if (x < 60)
+	{
+		printf("c\n");
+	}
+	else if (x < 80)
+	{
+		printf("b\n");
+	}
+	else
+	{
+		printf("c\n");
+	}
+	getchar();
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+int main()
+{
+	int n = -1;
+	printf("请输入字母");
+	scanf("%d", &n);
+
+	if (n==0||n==6)
+	{
+		printf("home\n");
+	}
+	else if (n>=1&&n<=5)
+	{
+		printf("work\n");
+	}
+	else
+	{
+		printf("wrong");
+	}
+	system("pause");
+	return 0;
+
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+int main()
+{
+	int ch = 0;
+	switch (ch)
+	{
+	case 1:
+		printf("office\n");
+	case 2:
+		printf("home\n");
+	default:
+		printf("nothing\n");
+		break;
+	}
+	system("pause");
+	return 0;
+
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+int main()
+{
+	int ch = 0;
+	switch (ch)
+	{
+	case 1:
+		printf("office\n");
+		break;
+	case 2:
+		printf("home\n");
+		break;
+	default:
+		printf("nothing\n");
+		break;
+	}
+	system("pause");
+	return 0;
+
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+int main()
+{
+	int count = 0;
+	int i;
+	for (i = 0; i < 100; i++)
+	{
+		if (i % 2)
+			continue;
+		count++;
+		printf("%d\n",i);
+	}
+	printf("%d\n",count);
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+int main()
+{
+	unsigned char buf[4] = { 1, 2, 3, 13 };
+	for (int i = 0; i < 4; i++)
+	{
+		printf ("%02X\n", buf[i]);
+	}
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+int main()
+{
+	unsigned char buf[8] = { 1, 2, 3, 4,5,6,7,8 };
+	for (int i = 0; i < 8; i++)
+	{
+		printf ("%02X\n", buf[i]);
+		if ((i + 1) % 4 == 0)
+			printf("\n");
+	}
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+int main()
+{
+	int n=5;
+	int buf[5] = { 1, 2.3,4,5};
+	for (int i = 0; i < 5 / 2; i++)
+	{
+		int t = buf[i];
+		buf[i]=buf[n - 1 - i];
+		buf[n - 1 - i]=t;
+
+	}
+	for (int j = 0; j < 5; j++)
+	{
+		printf("%d\n",buf[j]);
+	}
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+int main()
+{
+	char buf[100];
+	int i = 0;
+	while (i<100)
+	{
+		buf[i] = i + 1;
+		i++;
+	}
+
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+int main()
+{
+	int buf[100];
+	int count = 0;
+	while (1)
+	{
+		int n = 0;
+		printf("qingshuru");
+		scanf("%d", &n);
+		if (n <= 0)
+			break;
+		buf[count] = n;
+		count++;
+	}
+	printf("%d",count);
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+int main()
+{
+	int buf[100];
+	int count = 0;
+	while (1)
+	{
+		int n = 0;
+		printf("qingshuru");
+		scanf("%d", &n);
+		if (n <= 0)
+			break;
+		buf[count] = n;
+		count++;
+	}
+	printf("%d",count);
+	int sum = 0;
+	for ( int i = 0; i < count; i++)
+	{
+		sum += buf[i];
+	}
+	printf("%d", sum);
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+int main()
+{
+	int n = 345656;
+	int count = 0;
+	while (n!=0)
+	{
+		n = n / 10;
+		count++;
+	}
+	printf("%d", count);
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+int main()
+{
+	int n = 0;
+	do
+	{
+		printf("请输入一个数：");
+		scanf("%d", &n);
+	} 
+	while (n<0||n>100);
+	printf("%d", n);
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+int main()
+{
+	int a = 0;
+	int b = 0;
+	a += 10;
+	b = -5;
+	int c = a*b;
+	printf("%d\n", c);
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+int main()
+{
+	double x;
+	double y;
+	printf("please input");
+	scanf("%lf,%lf", &x,&y);
+	double result = x + y;
+	printf("result: %lf\n", result);
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int main()
+{
+	int a = 0;
+	printf("请输入一个数字");
+	scanf("%d\n",&a);
+	if (a % 2==0)
+	{
+		printf("偶数");
+	}
+	else
+	{
+		printf("奇数");
+	}
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int main()
+{
+	int a = 0;
+	printf("请输入一个数字");
+	scanf("%d\n",&a);
+	if ((a % 3==0)&&(a%7==0))
+	{
+		printf("ok");
+	}
+	else
+	{
+		printf("nook");
+	}
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int main()
+{
+	int a = 0;
+	printf("请输入一个数字");
+	scanf("%d\n",&a);
+	if ((a>=70)&&(a<=80))
+	{
+		printf("ok");
+	}
+	else
+	{
+		printf("nook");
+	}
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int main()
+{
+	int a = 0;
+	printf("请输入一个数字");
+	scanf("%d\n",&a);
+	if (a>=0)
+	{
+		printf("%d",a);
+	}
+	else
+	{
+		printf("%d",-a);
+	}
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int main()
+{
+	int a = 0;
+	int sum = 0;
+	printf("请输入一个数字");
+	scanf("%d\n",&a);
+	for (int i = 0; i < a; i++)
+	{
+		sum += (i + 1);
+	}
+	printf("%d\n", sum);
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int main()
+{
+	int a = 0;
+	int sum = 0;
+	int b = 0;
+	//printf("请输入一个数字");
+	//scanf("%d\n",&a);
+	for (int i = 1; i <= 100; i++)
+	{
+		if (i % 2 != 0)
+		{
+			sum += i*i;
+		}
+	}
+	printf("%d\n", sum);
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int main()
+{
+	int n = 5;
+	int sum = 0;
+	for (int i = 2; i < n; i++)
+	{
+		if (n%i != 0)
+		{
+			sum = sum + 1;
+		}
+
+	}
+	if (sum == (n-2))
+		{
+			printf("质数");
+		}
+	else 
+	{ 
+		printf("不是质数");
+        	}
+	system("pause");
+	return 0;
+}
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int main()
+{
+	int count =0;
+	for (int i = 100; i <=200 ; i++)
+	{
+		if (i%7== 0)
+		{
+			count++;
+			if (count<=10)
+			{
+				printf("%d\n", i);
+			}
+		}
+
+	}
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int main()
+{
+	int year = 2100;
+	if (year%100==0)
+	{
+		if (year%400==0)
+		printf("%d是闰年",year);
+		
+		else
+		printf("%d不是闰年", year);
+	}
+	else
+	{
+		if (year%4==0)
+			printf("%d是闰年", year);
+
+		else
+	    printf("%d不是闰年", year);
+	}
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int main()
+{
+	for (int i=1; i <=9; i++)
+	{
+		for (int j=i; j <=9; j++)
+		{
+			int aa=i*j;
+			printf("%dx%d=%d\n",i,j,aa);
+		}
+	}
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int main()
+{
+	int n = 1234;
+	while (true)
+
+	{
+		int a = n % 10;
+			printf("%d\n",a);
+			n = n / 10;
+			if (n == 0)
+			{
+				break;
+			}
+	}
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+	int test(int a, int b)
+	{
+		return a*a + b*b;
+	}
+
+	int main()
+	{
+		printf("%d\n",test(1,2));
+		system("pause");
+		return 0;
+	}
+
+	#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+	int test(char ch)
+	{
+		int ret = 0;
+		if (ch >= 'A'&&ch <= 'Z')
+		{
+			ret = 1;
+		}
+		else if (ch >= 'a'&&ch <= 'z')
+		{
+			ret = -1;
+		}
+		return ret;
+	}
+
+	int main()
+	{
+		char b;
+		printf("请输入字母");
+		scanf("%c",&b);
+		int ret = test(b);
+		printf("%d\n",ret);
+		system("pause");
+		return 0;
+	}
+
+	#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+	int test(int n)
+	{
+				return n*n*n;
+	}
+
+	int main()
+	{
+		int b;
+		int a;
+		printf("请输入字母");
+		scanf("%d",&b);
+		a= test(b);
+		printf("%d\n",a);
+		system("pause");
+		return 0;
+	}
+
+	#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int test()
+	{
+		return 123;
+	}
+
+	int main()
+	{
+		printf("%d\n",test());
+		system("pause");
+		return 0;
+	}
+
+	#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+void test(int a)
+	{
+		a += 1;
+		printf("%08x\n", &a);
+	}
+
+	int main()
+	{
+		int n = 10;
+		printf("%08x\n", &n);
+		test(n);
+		printf("%d\n",n);
+		system("pause");
+		return 0;
+	}
+
+	#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int data[8] = { 1, 2, 3, 4, 5, 6, 7, 8, };
+ double average(...)
+	{
+		int sum = 0;
+		for (int i = 0; i < 8; i++)
+		{
+			sum += data[i];
+		}
+		return sum / 8.0;
+	}
+
+	int main()
+	{
+		double ret = 0;
+			ret = average();
+			printf("%2lf/n", ret);
+		system("pause");
+		return 0;
+	}
+
+	#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+ int check(char ch)
+	{
+		int ret = 0;
+		if ((ch >= 'a') && (ch <= 'z'))
+		{
+			ret = 1;
+		}
+		if ((ch >= 'A') && (ch <= 'Z'))
+		{
+			ret = -1;
+		}
+		return ret;
+	}
+
+	int main()
+	{
+		int ret = 0;
+		char x;
+		printf("请输入一个字母");
+		scanf("%c\n",&x);
+		ret = check(x);
+		printf("%d\n", ret);
+		system("pause");
+		return 0;
+	}
+
+	#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int Sum(int* buf, int n)
+{
+	int total = 0;
+	for (int i = 0; i <n; i++)
+	{
+		total += buf[i];
+	}
+	return total;
+}
+
+int main()
+	{
+		//int result = 0;
+		int buf[64];
+		for (int i = 0; i < 64; i++)
+		{
+			buf[i] = i;
+		}
+		int result = Sum(buf, 64);
+		printf("%d\n",result);
+		system("pause");
+		return 0;
+	}
+
+	#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+unsigned char Hex2Int(char ch)
+{
+	unsigned char val = 0;
+	if (ch >= 'A'&&ch <= 'F')
+		val = 10 + ch - 'A';
+	else if (ch >= 'a'&&ch <= 'f')
+		val = 10 + ch - 'a';
+	else if (ch >= '0'&&ch <= '9')
+		val = ch - '0';
+	return val;
+}
+
+unsigned int Convert(const char*hex, int len)
+{
+	unsigned int result = 0;
+	for (int i = 0; i < len; i++)
+	{
+		result = result * 16 + Hex2Int(hex[i]);
+	}
+	return result;
+}
+int main()
+{
+	char buf[128];
+	printf("请输入字符串");
+	gets(buf);
+	unsigned int value = Convert(buf, strlen(buf));
+	printf("convert result%08x\n", value);
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+void print()
+{
+	for (int i = 1; i <= 10; i++)
+	{
+		printf("%d\n",i);
+	}
+}
+int main()
+{
+	print();
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+void welcome()
+{
+	printf("** C语言快速入门 **\n");
+	printf("** 作者: 邵发\n");	
+	printf("** 官网: http://afanihao.cn ** \n");
+}
+
+int main()
+{
+	welcome();
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+void print()
+{
+	int a = 12;
+	int b = 25;
+	for (int i = a; i <= b;i++)
+		if (i % 5 == 0)
+		{
+			printf("%d\n",i);
+		}
+}
+
+int main()
+{
+	print();
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int test(int a, int b, int c)
+{
+	int sum = a*a + b*b + c*c;
+	return sum;
+}
+
+int main()
+{
+	int sum = test(1, 2, 3);
+	printf("%d\n",sum);
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+bool check(int a, int b, int c)
+
+{
+	if (a*a + b*b == c || b*b + c*c == a*a || a*a + c*c == b*b)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+int main()
+{
+	bool c =check(3,4,5);
+	
+	if (c)
+	{
+		printf("是三角形");
+	}
+	else 
+	{
+		printf("nonono");
+	}
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int round(double x)
+{
+	if (x >= 0)
+	{
+		return (int)(x + 0.5);
+	}
+	else
+	{
+		return (int)(x - 0.5);
+	}
+}
+
+int main()
+{
+	printf("%.2f→%d\n",1.1,round(1.1));
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+double  my_abs(double x)
+{
+	if ( x >= 0)
+	{
+		return  x;
+	}
+	else
+	{
+		return  0-x;
+	}
+}
+
+int main()
+{
+	double a = -1.000;
+	printf("%.3lf\n", my_abs(a));
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+double  discount(double price)
+{
+	if (price < 30 && price >= 0)
+		return price;
+	if (price < 90 && price >= 30)
+		return price*0.5;
+	if (price >= 00)
+		return price*0.8;
+
+}
+
+int main()
+{
+	double price =60;
+	printf("%.2lf\n", discount(price));
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+bool is_leap_year(int  year)
+{
+	if (year % 100 == 0 && year % 400 == 0)
+		return true;
+	else if (year % 100 != 0 && year % 4 == 0)
+		return true;
+	else 
+		return  false;
+
+}
+
+int main()
+{
+	bool c = is_leap_year(2005);
+	if (c)
+	{
+		printf("是闰年");
+	}
+	else
+	{
+		printf("不是闰年");
+	}
+	
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int find_min(int* arr, int size)
+{
+	int min = arr[0];
+	for (int i = 1; i < size; i++)
+	{
+		if (arr[i] < min)
+		{
+			min = arr[i];
+		}
+	}
+	return min;
+}
+
+int main()
+{
+	int data[10] = { -1,1, 2, 3, 4, 5 };
+	int min = find_min(data, 5);
+	printf("%d\n",min);
+	system("pause");
+	return 0;
+}
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+void change(int* arr, int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		if (arr[i] < 0)
+		{
+			arr[i]=-arr[i];
+		}
+		else
+		{
+			arr[i] = arr[i];
+		}
+	}
+	
+}
+void print_array(int*arr, int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		printf("%d\n",arr[i]);
+		printf("\n");
+	}
+}
+int main()
+{
+	int data[10] = { -1,1, 2, 3, 4, 5 };
+	change(data, 10);
+	print_array(data, 10);
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int main()
+{
+	int a = 10;
+	int b = 11;
+	int* p = &a;
+	 p = &b;
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+int main()
+{
+	int arr[4] = {1,2,3,4};
+	for (int* p = arr; p <&arr[4]; p++)
+	{
+		printf("%d\n",*p);
+	}
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<stdbool.h>
+void test(int* p)
+{
+	printf("%d\n",*p);
+	*p = 1;
+}
+
+int main()
+{
+	int a = 0;
+	test(&a);
+	printf("%d\n", a);
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<string.h>
+#include<stdbool.h>
+struct Contact
+	{
+		int id;
+		char name[16];
+		char phone[16];
+	};
+
+int main()
+{
+	Contact a;
+	a.id = 201501;
+	strcpy(a.name, "john");
+	strcpy(a.phone, "18610112231");
+    system("pause");
+    return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<string.h>
+#include<stdbool.h>
+struct Contact
+	{
+		int id;
+		char name[16];
+		char phone[16];
+	};
+
+int main()
+{
+	Contact a;
+	a.id = 201501;
+	strcpy(a.name, "john");
+	strcpy(a.phone, "18610112231");
+	printf("%d\n%s\n%s\n", a.id, a.name, a.phone);
+    system("pause");
+    return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<string.h>
+#include<stdbool.h>
+struct Contact
+	{
+		int id;
+		char name[16];
+		char phone[16];
+	};
+
+int main()
+{
+	Contact cs[4] =
+	{
+		{ 201501, "one", "10000" },
+		{ 201502, "two", "10001" },
+		{ 201503, "three", "10002" },
+	};
+	printf("%d\n%s\n%s\n", cs[2].id, cs[2].name, cs[2].phone);
+    system("pause");
+    return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<string.h>
+#include<stdbool.h>
+//定义数据
+struct Student
+	{
+		int id;
+		char name[16];
+		int scores[3];
+	};
+	Student data[100];
+	int count = 0;
+//定义一个信息输入的函数
+	int input(Student* s)
+	{
+		printf("ID:");
+		scanf("%d\n", &s->id);
+		printf("Name:");
+		gets(s->name);
+		printf("Score:");
+		int a, b, c;
+		scanf("%d,%d,%d", &a, &b, &c);
+		s->scores[0] = a;
+		s->scores[1] = b;
+		s->scores[2] = c;
+		return 0;
+	}
+	Student* find(const char* name)
+	{
+		for (int i = 0; i < count; i++)
+		{
+			Student* s = &data[i];
+			if (strcmp(name, s->name) == 0)
+			{
+				return s;
+			}
+		}
+		return 0;
+	}
+
+	int add(Student* s)
+	{
+		data[count] = *s;
+		count++;
+		return 0;
+	}
+void list_all()
+	{
+		for (int i = 0; i < count; i++)
+		{
+			Student* s = &data[i];
+			printf("%d\n,%s\n,%d\n,%d\n,%d\n",
+				s->id, s->name, s->scores[0], s->scores[1], s->scores[2] );
+		}
+	}
+int test()
+{
+	Student s;
+	//input(&s);
+	s.id = 1024;
+	strcpy(s.name, "shaofa");
+	s.scores[0] = 70;
+	s.scores[1] = 70;
+	s.scores[2] = 70;
+	add(&s);
+	list_all();
+	return 0;
+} 
+void on_add()
+{
+	Student s;
+	input(&s);
+	//s.id = 1024;
+	//strcpy(s.name, "shaofa");
+	//s.scores[0] = 70;
+	//s.scores[1] = 70;
+	//s.scores[2] = 70;
+	//add(&s);
+}
+int main()
+{
+	char cmdline[128];
+	while (1)
+	{
+		printf(">");
+		scanf("%s", cmdline);
+		printf("%s\n", cmdline);
+		if (strcmp(cmdline,"exit") == 0)
+		{
+			printf("now exit...");
+				break;
+		}
+		if (strcmp(cmdline, "add") == 0)
+		{
+			on_add();
+			continue;
+		}
+		if (strcmp(cmdline, "list") == 0)
+		{
+			list_all();
+			continue;
+		}
+		if (strcmp(cmdline, "count") == 0)
+		{
+			printf("%d\n", count);
+			continue;
+		}
+		if (strcmp(cmdline, "find") == 0)
+		{
+			printf("请输入一个名字");
+			char name[16];
+			scanf("%s\n",name);
+			Student* s = find(cmdline);
+			if (s)
+			{
+			printf("%d\n,%s\n,%d\n,%d\n,%d\n",
+					s->id, s->name, s->scores[0], s->scores[1], s->scores[2]);
+			}
+			else
+			{
+				printf("no data");
+			}
+		}
+
+	}
+	system("pause");
+	return 0;
+}
+
+#include <stdio.h>
+#include <string.h>
+
+//////////// 定义数据 ////////
+struct Student
+{
+	int id;
+	char name[16];
+	int scores[3];
+};
+Student  data[100];  // 数据源 ：存储所有数据
+int      count = 0;  // 总个数
+
+// 定义一个用入信息输入的函数：
+// 将输入的信息保存到输出参数s
+// 返回0，表示成功录入。返回-1，表示录入失败。
+int input(Student* s)
+{
+	printf("ID: ");
+	scanf("%d", &s->id);
+
+	printf("Name: ");
+	//gets(s->name); // char*
+	scanf("%s", s->name);
+
+	printf("Score: ");
+	int a, b, c;
+	scanf("%d,%d,%d",&a, &b, &c);
+	s->scores[0] = a;
+	s->scores[1] = b;
+	s->scores[2] = c;
+
+	//scanf("%d,%d,%d", 
+	//	&s->scores[0], &s->scores[1], &s->scores[2]);
+	return 0;
+}
+
+//函数: 将新录入的学生信息保存到数据源
+// 返回值：0，成功；-1，失败
+int add(const Student* s)
+{
+	data[count] = *s;
+	count ++;
+	return 0; // 总是成功
+}
+
+
+//函数: 将数据源里所有记录全部打印显示。
+void list_all()
+{
+	printf("ID \tName \tScore \n");
+	printf("------------------------\n");
+	for(int i=0; i<count; i++)
+	{
+		Student* s = &data[i];
+		printf("%d \t%s \t%d,%d,%d \n",
+			s->id,
+			s->name,
+			s->scores[0],
+			s->scores[1],
+			s->scores[2]);
+	}
+	printf("------------------------\n");
+
+}
+
+//  按照名称查找
+Student* find(const char* name)
+{
+	for(int i=0; i<count; i++)
+	{
+		Student* s = &data[i];
+		if( strcmp(name, s->name) == 0)
+		{
+			return s;
+		}
+	}
+	return NULL;
+}
+
+int main()
+{
+	char cmdline[128];
+
+	while(1)
+	{
+		printf("> ");
+		scanf("%s", cmdline);
+		
+		//printf("cmd: %s \n", cmdline);
+		
+		// 退出
+		if( strcmp(cmdline, "exit") == 0)
+		{
+			printf("now exit...\n");
+			break;
+		}
+
+		// 菜单处理
+		if( strcmp(cmdline, "add") == 0)
+		{		
+			Student s;
+			input(&s);
+			add(&s);
+			continue;
+		}
+		// 菜单处理
+		if( strcmp(cmdline, "list") == 0)
+		{		
+			list_all();
+			continue;
+		}
+		// 菜单处理
+		if( strcmp(cmdline, "count") == 0)
+		{		
+			printf("total: %d \n", count);
+			continue;
+		}
+		// 菜单处理
+		if( strcmp(cmdline, "find") == 0)
+		{		
+			printf("enter Name: ");
+			char name[16];
+			scanf("%s", name);
+
+			Student* s = find(name);
+			if(s)
+			{
+				printf("Found: ID:%d, Name:%s,Score:%d,%d,%d\n",
+					s->id, s->name,
+					s->scores[0], s->scores[1], 
+					s->scores[2]);
+			}
+			else
+			{
+				printf("Not Found\n");
+			}
+			continue;
+		}
+
+		printf("Bad Input\n");
+
+	}
+	return 0;
+}
+
+
+int test ()
+{
+	Student s;
+
+	//input(&s);
+	s.id = 1024;
+	strcpy(s.name, "shaofa");
+	s.scores[0] = 70;
+	s.scores[1] = 80;
+	s.scores[2] = 90;
+	
+	add(&s);
+
+	list_all();
+	return 0;
+}
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<string.h>
+#include<stdbool.h>
+//定义数据
+struct Music
+	{
+		char singer[16];
+		char name[16];
+		char cd[16];
+		char down_url[16];
+		int hits;
+	};
+int main()
+{
+	Music mp3;
+	strcpy(mp3.singer, "高桥");
+	strcpy(mp3.name, "起风了");
+	strcpy(mp3.cd, "起风了");
+	strcpy(mp3.down_url, "www.baidu.com");
+	mp3.hits = 9999;
+	printf("%s\n",mp3.singer);
+	printf("%s\n", mp3.name);
+	printf("%s\n", mp3.cd);
+	printf("%s\n", mp3.down_url);
+	printf("%d\n", mp3.hits);
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<string.h>
+#include<stdbool.h>
+//定义数据
+struct Object
+{
+	int id;
+	char name[32];
+};
+
+int main()
+{
+	struct Object obj;
+	obj.id = 12;
+	strcpy_s(obj.name, 32, "shaofa");
+
+	printf("%d\n,%s\n", obj.id, obj.name);
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<string.h>
+#include<stdbool.h>
+//定义数据
+struct Triangle
+{
+	int a;
+	int b;
+	int c;
+};
+int main()
+{
+	struct Triangle obj;
+	obj.a = 3;
+	obj.b = 4;
+	obj.c = 5;
+	int zhouchang = obj.a + obj.b + obj.c;
+	printf("%d\n",zhouchang);
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<string.h>
+#include<stdbool.h>
+//定义数据
+struct Student
+{
+	char name[100];   // 姓名
+	bool sex; // 性别(true,男, false, 女)
+	int score; // 考试成绩 (0-100)
+};
+int main()
+{
+	struct Student s;
+	struct Student* ps = &s;
+	strcpy(ps->name, "shaofa");
+	ps->sex = true;
+	printf("%s\n%d\n%d\n",ps->name,ps->sex,ps->score);
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<string.h>
+#include<stdbool.h>
+//定义数据
+struct Option
+{
+	char answer[100]; // 选项提示文字 
+	bool selected;  // 是否选中
+};
+
+// 题目
+struct Example
+{
+	char question[100];
+	struct Option options[4];
+};
+
+int main()
+{
+	struct Example ex;
+	strcpy_s(ex.question, 100, "你喜欢的编程语言?");
+	
+	// 第1项
+	strcpy_s(ex.options[0].answer, 100, "C");
+	ex.options[0].selected = true;
+
+	// 第2项
+	strcpy_s(ex.options[1].answer, 100, "C++");
+	ex.options[1].selected = true;
+
+	// 第3项
+	strcpy_s(ex.options[2].answer, 100, "Java");
+	ex.options[2].selected = true;
+
+	// 第4项
+	strcpy_s(ex.options[3].answer, 100, "Python");
+	ex.options[3].selected = false;
+
+	//
+	printf("题目: %s \n", ex.question);
+	for (int i = 0; i < 4; i++)
+	{
+		struct Option* po = &ex.options[i];
+
+		// 用一个符号表示是否被选中
+		char* mark = "■";
+		if (!po->selected)
+			mark = "□";
+
+		// 显示这一选项
+		printf(" %s %s \n", mark, po->answer);
+
+	}
+	system("pause");
+	return 0;
+}
+
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<iostream>
+#include<string.h>
+#include<stdbool.h>
+//定义数据
+struct Option
+{
+	char answer[100]; // 选项提示文字 
+	bool selected;  // 是否选中
+};
+
+// 题目
+struct Example
+{
+	char question[100];
+	struct Option options[4];
+};
+
+int main()
+{
+	struct Example ex;
+	strcpy_s(ex.question, 100, "你喜欢的编程语言?");
+	
+	// 第1项
+	strcpy_s(ex.options[0].answer, 100, "C");
+	ex.options[0].selected = true;
+
+	// 第2项
+	strcpy_s(ex.options[1].answer, 100, "C++");
+	ex.options[1].selected = true;
+
+	// 第3项
+	strcpy_s(ex.options[2].answer, 100, "Java");
+	ex.options[2].selected = true;
+
+	// 第4项
+	strcpy_s(ex.options[3].answer, 100, "Python");
+	ex.options[3].selected = false;
+
+	//
+	printf("题目: %s \n", ex.question);
+	for (int i = 0; i < 4; i++)
+	{
+		struct Option* po = &ex.options[i];
+
+		// 用一个符号表示是否被选中
+		//char* mark = "■";
+		if (!po->selected)
+		//	mark = "□";
+		printf("■%s\n",  po->answer);
+		else// 显示这一选项
+		printf("□%s\n", po->answer);
+
+	}
+	system("pause");
+	return 0;
+}
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+struct Car
+{
+		char maker[32];
+		int price;
+};
+struct Citizen
+{
+	char name[32];
+	int deposite;
+	Car* car;
+};
+void buy(Citizen* owner)
+{
+	Car* car = (Car*)malloc(sizeof(Car));
+	strcpy_s(car->maker, "Chvrolet");
+	car->price = 10;
+	owner->car = car;
+	owner->deposite -= car->price;
+}
+void discard(Citizen* owner)
+{
+	free(owner->car);
+	owner->car = NULL;
+}
+void sell(Citizen* owner, Citizen*other)
+{
+	Car* car = owner->car;
+	car->price *= 0.5;
+	other->car = car;
+	owner->deposite += car->price;
+	owner->car = NULL;
+}
+int main()
+{
+	Citizen shaofa = { "shaofa", 100, NULL };
+	Citizen wangwang = { "wangwang", 100, NULL };
+	buy(&shaofa);
+	//discard(&shaofa);
+	sell(&shaofa, &wangwang);
+	system("pause");
+	return 0;
+}
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+void a();
+void b();
+void c();
+void a()
+{
+	printf("wqe");
+	b();
+}
+void b()
+{
+	printf("w2e");
+	a();
+}
+int main()
+{
+	a();
+	system("pause");
+	return 0;
+}
+
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main()
+{
+	int a = 12;
+	int* p = &a;
+	printf("a的地址: %p \n", p);
+	system("pause");
+	return 0;
+}
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+struct Student
+{
+	int id;
+	char name[16];
+	Student* next;
+};
+Student ss[4]=
+{
+	{ 201501, "John", 0 },
+	{ 201502, "Jennifer", 0 },
+	{ 201503, "Anxi", 0 },
+	{ 201504, "Unnamed", 0 }
+};
+
+
+int main()
+{
+	ss[0].next = &ss[1];
+	ss[1].next = &ss[2];
+	ss[2].next = &ss[3];
+	ss[3].next = 0;
+
+	Student* p = &ss[0];
+	while (p)
+	{
+		printf("%d,%s\n",p->id,p->name);
+		p = p->next;
+	}
+	system("pause");
+	return 0;
+}
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+struct Student
+{
+	int id;
+	char name[16];
+	Student* next;
+};
+Student ss[4]=
+{
+	{ 201501, "John", 0 },
+	{ 201502, "Jennifer", 0 },
+	{ 201503, "Anxi", 0 },
+	{ 201504, "Unnamed", 0 }
+};
+
+
+Student* find(Student* head, int id)
+{
+	Student* p = head;
+	while (p)
+	{
+		if (p->id == id) // 符合条件
+			return p;
+
+		p = p->next;
+	}
+	return NULL; // 没有找到符合条件的对象
+}
+
+
+int main()
+{
+	ss[0].next = &ss[1];
+	ss[1].next = &ss[2];
+	ss[2].next = &ss[3];
+	ss[3].next = 0;
+
+	Student* p = &ss[0];
+	while (p)
+	{
+		printf("%d,%s\n",p->id,p->name);
+		p = p->next;
+	}
+	Student* result = find(&ss[0], 201503);
+	system("pause");
+	return 0;
+}
+
+
+void add(Student* obj)
+{
+	obj->next = m_head->next;
+	m_head->next = obj;
+}
+
+void add(Student* obj)
+{
+	Student* p = &m_head;
+	while (p->next)
+	{
+		p = p->next;
+	}
+	p->next = obj;
+	obj->next = NULL;
+}
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+struct Student
+{
+	int id;
+	char name[16];
+	Student* next;
+};
+Student m_head = { 0 };//定义了一个有头节点
+//插入一个对象
+void add(Student* obj)
+{
+	obj->next = m_head.next;
+	m_head.next = obj;
+}
+
+//void add(Student* obj)
+//{
+//	Student* p = &m_head;
+//	while (p->next)
+//	{
+//		p = p->next;
+//	}
+//	p->next = obj;
+//	obj->next = NULL;
+//}
+
+int main()
+{
+	Student* obj_1 = (Student*)malloc(sizeof(Student));
+	obj_1->id = 1;
+	strcpy_s(obj_1->name, "X");
+ 	add(obj_1);
+
+	Student* obj_2 = (Student*)malloc(sizeof(Student));
+	obj_2->id = 2;
+	strcpy_s(obj_2->name, "Y");
+	add(obj_2);
+	system("pause");
+	return 0;
+}
+
+
+int insert(Student* obj)
+{
+	Student* cur = m_head.next;
+	Student* pre = &m_head;
+	while (cur)
+	{
+		if (obj->id < cur->id)
+			break;
+		pre = cur;
+		cur = cur->next;
+	}
+	obj->next = pre->next;
+	pre->next = obj;
+	return 0;
+}
+
+void remove(int id)
+{
+	Student* cur = m_head.next; // 当前节点current
+	Student* pre = &m_head;  // 上一个节点previous
+	while (cur)
+	{
+		if (id == cur->id) // 找到这个位置
+		{
+			// 删除该节点
+			pre->next = cur->next;
+			free(cur);
+			break;
+		}
+		pre = cur;
+		cur = cur->next;  // 找到最后一个对象
+	}
+}
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main()
+{
+	const char* str = "hello,world";
+	//printf("",);
+	system("pause");
+	return 0;
+}
+
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+int show_string(const char* str)
+{
+	for (int i = 0;; i++)
+	{
+		char ch = str[i];
+		if (ch == 0)
+			break;
+			printf("%c ",ch);
+	}
+	return 0;
+}
+
+
+int main()
+{
+	const char* str = "hello,world";
+	show_string(str);
+	system("pause");
+	return 0;
+}
+
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+void erase(char text[], char del)
+{
+	int len = strlen(text);
+	int count = 0;
+	char* copy = (char*)malloc(len + 1);
+	for (int i = 0; i < len; i++)
+	{
+		char ch = text[i];
+		if (ch != del)
+		{
+			copy[count] = ch;
+			count++;
+		}
+	}
+	copy[count] = 0;
+	strcpy_s(text,12, copy);
+	free(copy);
+}
+int show_string(const char* str)
+{
+	for (int i = 0;; i++)
+	{
+		char ch = str[i];
+		if (ch == 0)
+			break;
+			printf("%c ",ch);
+	}
+	return 0;
+}
+
+
+int main()
+{
+    char str [] = "hello,world";
+	erase(str, 'o');
+	show_string(str);
+	system("pause");
+	return 0;
+}
+
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int split(char text[], char* parts[])
+{
+	int count = 0; // 分段的个数
+	int start = 0; // 每一分段的首地址
+	int flag = 0; // 遍历text，标识当前是否处于有效字符
+
+	int stop = 0; // 是否到达结束
+	for (int i = 0; !stop; i++)
+	{
+		char ch = text[i];
+		if (ch == 0)
+			stop = 1; // 结束循环
+
+		if (ch == ',' || ch == '\0' || ch == ' ' || ch == '\t')
+		{
+			if (flag) // 遇到分隔符，且当前状态为flag=1
+			{
+				flag = 0;
+
+				text[i] = 0; // 修改为结束符,完成分段
+				parts[count] = text + start; // 记录首地址
+				count++;
+			}
+		}
+		else
+		{
+			if (!flag) // 遇到有效字符，且当前状态为flag=0
+			{
+				flag = 1;
+				start = i;
+			}
+		}
+	}
+	return count; // 返回分段个数
+}
+
+int main()
+{
+	char text[] = "hello,world,,good,\tmorning ";
+
+	char* parts[16];
+	int count = split(text, parts);
+	system("pause");
+	return 0;
+}
+
+
+srand(time(NULL)); 	
+     for(int i=0; i<10; i++)
+	{
+		printf("%d \n", rand());
+	}
+srand: 只需要main()启动时运行一次就够了。不需要每次rand()之前都调用srand。
+
+
+通常地，要对rand()返回的结果取模，使其坐落在一个区间内。
+比如，要在100和160之间随机取一个数。
+     int r = rand() % 60 + 100;
+其中，60是区间长度
+
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+int main()
+{
+	time_t now = time(NULL);
+	printf("%d\n",(int)now);
+	system("pause");
+	return 0;
+}
+
+#pragma warning( disable : 4996)
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+int main()
+{
+	time_t now = time(NULL);
+	tm info = *localtime(&now);
+	int year = info.tm_year + 1900;
+	int month = info.tm_mon + 1;
+
+	printf("%d\n",(int)now);
+	system("pause");
+	return 0;
+}
+#pragma warning( disable : 4996)
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+int main()
+{
+	time_t now = time(NULL);//当前时间
+	now += 300 * 24 * 3600;
+	tm info = *localtime(&now);
+
+
+	system("pause");
+	return 0;
+}
+
+time_t: 自1970年1月1日的秒值
+
+tm: 
+
+localtime: time_t 转成 “年月日时分秒”
+
+mktime: “年月日时分秒”转成time_t
+
+
+#pragma warning( disable : 4996)
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+int main()
+{
+	const char* filename = "d:/aaa.txt";
+	FILE* fp = fopen(filename, "wb");
+	if (fp == NULL)
+	{
+		printf("wrong");
+		return -1;
+	}
+
+	system("pause");
+	return 0;
+}
+
+（1） fopen: 打开文件
+示例：
+const char* filename = "c:/aaa.txt";
+FILE* fp = fopen(filename, "wb" );
+if(fp == NULL)
+{
+    printf("failed to open file!\n");
+    return -1;
+}
+
+（2） fclose: 关闭文件
+int fclose(FILE* stream);
+
+参数: stream就是前面fopen的返回值
+
+示例：
+fclose(fp);
+
+
+（3） fwrite: 写入数据
+size_t fwrite(const void *buf, 
+     size_t size, size_t count, 
+     FILE *stream);
+
+参数: stream就是前面fopen的返回值
+    buf, 要写入的数据
+    size,总是传1
+    count, 字节数
+
+返回值 ：字节数
+
+示例：
+char buf[] = "hello";
+fwrite(buf, 1, 5, fp);
+
+#pragma warning( disable : 4996)
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<string.h>
+int main()
+{
+	const char* filename = "d:/aaa.txt";
+	FILE* fp = fopen(filename, "wb");
+	if (fp == NULL)
+	{
+		printf("wrong");
+		return -1;
+	}
+	double a = 3 / 4.0;
+	//fwrite(&a, 1, sizeof(a), fp);
+	char text[16];
+	sprintf(text, "%.2lf", a);
+	fwrite(text, 1, strlen(text), fp);
+	system("pause");
+	return 0;
+}
+#pragma warning( disable : 4996)
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+int main()
+{
+	const char* filename = "d:/aaa.txt";
+	FILE* fp = fopen(filename, "wb");
+	if (fp == NULL)
+	{
+		printf("wrong");
+		return -1;
+	}
+	char buf[16] = "hello";
+	char buf1[16] = "abcd";
+	fwrite(buf, 1, 16, fp);
+	fwrite(buf1, 1, 16, fp);
+	system("pause");
+	return 0;
+}
+
+#pragma warning(disable : 4996)
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+#include<string.h>
+struct Student
+{
+	char gender; // 性别
+	int id; // id
+	char name[16]; // 年龄
+};
+int main()
+{
+	const char* filename = "d:/aaa.txt";
+	FILE* fp = fopen(filename, "wb");
+	if (fp == NULL)
+	{
+		printf("wrong");
+		return -1;
+	}
+	Student someone = { 20150101, 'M', "Noname" };
+	fwrite(&someone.gender, 1, 4, fp);
+	fwrite(&someone.id, 1, 1, fp);
+	fwrite(&someone.name, 1, 16, fp);
+	fclose(fp);
+	system("pause");
+	return 0;
+}
+
+4. 如何实现“追加写入”？append
+使用"wb"方式写入时，每次写得的东西都把原有的东西覆盖了。。。
+解决办法：使用  "ab" 作为参数  (append binary)
+	FILE* fp = fopen(filename, "ab" );
+	if(fp == NULL)
+	{
+		printf("failed to open file!\n");
+	}
+使用"wb"模式时，每次打开文件都先清空原有的内容。（即使你不写入新东西，原有的数据也被清空了）
+
+使用"ab"模式时，每次打开文件不清空原有内容，新内容追加在末尾
+
+int load()
+{
+	const char* filename = "d:/aaa.txt";
+	FILE* fp = fopen(filename, "rb");
+	if (fp == NULL)
+	{
+		printf("failed to open file!\n");
+		return -1;
+	}
+
+	// 	char buf[128];
+	// 	int n = fread(buf, 1, 128, fp);
+
+	// 	char buf[4];
+	// 	while(! feof (fp)) 
+	// 	{
+	// 		int n = fread (buf, 1, 4, fp);
+	// 		if( n > 0)
+	// 		{
+	// 			printf("read %d bytes \n", n);
+	// 		}		
+	// 	}
+
+	char buf[128];
+	int n = fread(buf, 1, 128, fp);
+	/*while (1)
+	{
+		char* line = fgets(buf, sizeof(buf), fp);
+		if (!line)
+			break;
+
+		printf("%s", line);
+	}*/
+
+	fclose(fp);
+	return 0;
+}
+
+char buf[4];
+	while(! feof (fp)) 
+	{
+	 	int n = fread (buf, 1, 4, fp);
+	 	if( n > 0)
+		{
+	 	printf("read %d bytes \n", n);
+	 	}		
+	}
+
+	 char buf[128];
+   sprintf("%d,%d", a, b); // 以逗号分隔
+   fwrite(buf, 1, strlen(buf), fp);
+
+#pragma warning(disable : 4996)
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+struct Student
+{
+	char gender; // 性别
+	int id; // id
+	char name[16]; // 年龄
+};
+
+struct Car
+{
+	char maker[32]; // 制造商
+	int  price;  // 价格
+};
+struct Citizen
+{
+	char name[32]; // 名字
+	int  deposite; // 存款
+	Car* car;  // NULL时表示没车
+};
+
+
+// 存储数据
+int save()
+{
+	const char* filename = "d:/aaa.txt";
+	FILE* fp = fopen(filename, "wb");
+	if (fp == NULL)
+	{
+		printf("failed to open file!\n");
+		return -1;
+	}
+
+	Car* car = (Car*)malloc(sizeof(Car));
+	strcpy(car->maker, "Chevrolet");
+	car->price = 10;
+
+	Citizen  who = { "shaofa", 100 };
+	who.car = car;
+
+	fwrite(who.name, 1, 32, fp);
+	fwrite(&who.deposite, 1, 4, fp);
+	if (who.car != NULL)
+	{
+		fwrite("Y", 1, 1, fp); // 存入一个字节'Y'
+		fwrite(who.car->maker, 1, 32, fp);
+		fwrite(&who.car->price, 1, 4, fp);
+	}
+	else
+	{
+		fwrite("N", 1, 1, fp); // 存入一个字节'N'
+	}
+
+
+	fclose(fp);
+	return 0;
+}
+
+// 读取数据
+int load()
+{
+	const char* filename = "d:/aaa.txt";
+	FILE* fp = fopen(filename, "rb");
+	if (fp == NULL)
+	{
+		printf("failed to open file!\n");
+		return -1;
+	}
+
+	Citizen who;
+	fread(who.name, 1, 32, fp);
+	fread(&who.deposite, 1, 4, fp);
+
+	char has = 'N';
+	fread(&has, 1, 1, fp);
+	if (has == 'Y') // 先看有没有car的信息
+	{
+		Car* car = (Car*)malloc(sizeof(Car));
+		fread(car->maker, 1, 32, fp);
+		fread(&car->price, 1, 4, fp);
+		who.car = car;
+	}
+	else
+	{
+		who.car = NULL;
+	}
+
+
+	fclose(fp);
+	return 0;
+}
+
+int main()
+{
+	//save();
+
+	load();
+	system("pause");
+	return 0;
+}
+
+const char* filename = "d:/aaa.txt";
+	FILE* fp = fopen(filename, "rb");
+	if (fp == NULL)
+	{
+		printf("failed to open file!\n");
+		return -1;
+	}
+
+	unsigned char buf[16];
+	int ret =fseek(fp, 0, SEEK_SET);
+	int n = fread(buf, 1, 16, fp);
+
+	const char* filename = "d:/aaa.txt";
+	FILE* fp = fopen(filename, "wb");
+	if (fp == NULL)
+	{
+		printf("failed to open file!\n");
+		return -1;
+	}
+
+	char ip[] = "192.168.1.100";
+	int port = 8080;
+
+	char line[256];
+	sprintf(line, "ip=%s\n", ip);
+	fwrite(line, 1, strlen(line), fp);
+
+	sprintf(line, "port=%d\n", port);
+	fwrite(line, 1, strlen(line), fp);
+
+	char ip[] = "192.168.1.100";
+	int port = 8081;
+
+	fprintf(fp, "ip=%s\n", ip);
+	fprintf(fp, "port=%d\n", port);
+
+	const char* filename = "d:/aaa.txt";
+	FILE* fp = fopen(filename, "rb");
+	if (fp == NULL)
+	{
+		printf("failed to open file!\n");
+		return -1;
+	}
+
+	char buf[512];
+	while (!feof(fp))
+	{
+		char* line = fgets(buf, 512, fp);
+		if (line)
+		{
+			printf("got: %s", line);
+		}
+	}
+
+	fclose(fp);
+	return 0;
+
+#include<stdio.h>
+#include<stdlib.h>
+extern double get_area(double r);
+int main()
+{
+	double r;
+	printf("enter r: ");
+	scanf_s("%lf", &r);
+
+	double area = get_area(r);
+	printf("result: %.3lf\n", area);
+	system("pause");
+	return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+void  get_avg(const char*  arr, int n, float* avg)
+{
+	int total = 0;
+	for (int i = 0; i<n; i++)
+	{
+		total += arr[i];
+	}
+	*avg = (float)total / n;
+}
+
+int main()
+{
+	char arr[4] = { 2, 8, 9, 18 };
+	float avg;
+	get_avg(arr, 4, &avg);
+	printf("平均值: %.3f \n", avg);
+	system("pause");
+	return 0;
+}
+
+.h文件放  放结构体定义 函数接口
+cpp文件放 函数实现 include头文件
+主文件（main）只放基本调用和include头文件
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+class Object 
+{
+public:  
+	int x; 
+	int y;   
+	void Test() 
+	{ printf("hello,world!\n"); } 
+};
+
+
+void main()
+{
+	Object obj;
+	obj.Test();  // 点号 .  
+	Object* p = &obj; 
+	p->Test();  // 箭头 ->
+	system("pause");
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+class Object 
+{
+public:  
+	int x; 
+	int y;   
+	void Test()   
+	{
+		printf("x=%d, y=%d\n", this->x, this->y); 
+	}
+};
+
+
+void main()
+{
+	Object obj;
+	obj.x = 10;
+	obj.y = 20;
+	obj.Test();
+	system("pause");
+}
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+class Object
+{
+public:
+	int x=1;
+	int y=2;
+public:
+	int Add()
+	{
+		return x + y; // 相当于 this->x + this->y
+	}
+	void Test()
+	{
+		printf("Sum: %d \n ", Add()); // 相当于this->Add()
+	}
+};
+
+
+void main()
+{
+	Object obj; 
+	obj.Add(); 
+	obj.Test();
+	system("pause");
+}
+
+(1) 在成员函数里:当局部变量与成员变量重名时，该变量指向的是局部变量。
+
+class Object
+{
+public:
+	int x; // 成员变量
+	void Test(int x)
+	{
+		printf("x = %d \n", x);// 最近的:函数内定义的x
+	}
+};
+
+如果要指定成员变量x，则必须加上 this->的限定
+
+(2) 在成员函数里，当成员变量与全局变量重名时，该变量指向的是成员变量。
+
+int x = 10; // 全局变量
+class Object
+{
+public:
+	int x;
+	void Test(int)
+	{
+		printf("x = %d \n", x);// 最近的x:成员变量x
+	}
+};
+注：如果要指定全局变量x，则必须加上::x 
+
+(3) 在成员函数与全局函数重名时，默认指成员函数
+ void Sum(int x, int y)
+ {
+      return x + y;
+ }
+
+class Object
+{
+public:
+      void Sum(int x, int y)
+      {
+          return x + y;
+      }
+      void Test()
+      {
+	printf("x = %d \n", Sum(10,11));// 最近的x:成员变量x
+      }
+};
+注：::全局符号， this-> 成员
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+class Circle
+{ 
+public:  
+	int GetX()
+	{
+		return m_x;
+	}
+	int GetY()
+	{
+		return m_y;
+	}
+	void SetRadius(int r)
+	{
+
+		m_radius = r;
+	}
+	void MoveTo(int x, int y)    
+	{  
+		m_x = x;
+		m_y = y;
+	}    
+
+	double Area()
+	{
+		return 3.14*m_radius*m_radius;
+	}
+	//int contain(double x, double y)
+	//{
+
+	//}
+private:   
+	int m_x;  
+	int m_y;    
+	int m_radius;
+};
+
+
+void main()
+{
+	Circle obj;
+	obj.SetRadius(2);
+	obj.MoveTo(0, 0);
+	double area = obj.Area();
+	/*if (obj.contain(1.2, 1.3))
+	{
+		printf("OK");
+	}*/
+	system("pause");
+//	return 0;
+}
+
+把class的成员函数的定义写在class之外，即class的大括号的外面。
+
+例如，
+///////////  main.cpp ////////////
+class Object
+{
+public:
+   int x;
+   void Test(); // (1) 成员函数的声明
+};
+void Object::Test() //(2) 成员函数写在外边，加上类名限定
+{
+}
+
+#include <stdio.h>
+#include <string.h>
+
+// 网卡的物理地址
+// 如5C-26-0A-86-7B-4A, 或5C:26:0A:86:7B:4A
+class MacAddress
+{
+public:
+	int parse(const char* str)
+	{
+		if (strlen(str) != 17) return -1;
+
+		int k = 0;
+		for (int i = 0; i<17; i += 3)
+		{
+			unsigned char v1 = hexToInt(str[i]);
+			unsigned char v2 = hexToInt(str[i + 1]);
+			data[k] = v1 * 16 + v2;
+			k++;
+
+			// 检查是横线或冒号, 也可以放松检查
+			char b = str[i + 2];
+			if (b != '-' && b != ':' && i != 0)
+			{
+				return -1;
+			}
+		}
+		return 0;
+	}
+
+	void toString(char* output)
+	{
+		int offset = 0;
+		for (int i = 0; i<6; i++)
+		{
+			sprintf_s(output + offset, "%02X-", data[i]);
+			offset += 3;
+		}
+		output[offset - 1] = 0;
+	}
+
+private:
+	// 十六进制的字符 转成 数字
+	unsigned char hexToInt(char c)
+	{
+		if (c >= '0' && c <= '9') return c - '0';
+		if (c >= 'a' && c <= 'z') return c - 'a' + 10;
+		if (c >= 'A' && c <= 'Z') return c - 'A' + 10;
+		return 0;
+	}
+
+public:
+	unsigned char data[6];
+};
+
+int main()
+{
+	// 测试1
+	MacAddress a1;
+	a1.parse("5C-26-0A-86-7B-4A");
+
+
+	// 测试2
+	MacAddress a2;
+	a2.data[0] = 0x11;
+	a2.data[1] = 0xA3;
+	a2.data[2] = 0x56;
+	a2.data[3] = 0xF3;
+	a2.data[4] = 0xF1;
+	a2.data[5] = 0xAF;
+	char text[32];
+	a2.toString(text);
+
+	return 0;
+}
+
+#include<stdio.h>
+#include<stdlib.h>
+class Circle 
+{ 
+public:  
+	Circle()  
+	{ 
+		x = y = 0; 
+	radius = 1; 
+	}    
+    Circle(int x, int y, int r)   
+    { 
+	this->x = x;    
+	this->y = y;     
+	this->radius = r; 
+    } 
+public:
+	int x, y;
+	int radius;
+};
+int main()
+{
+	system("pause");
+	return 0;
+}
+
+析构和构造是一对相反的过程。
+构造函数：对象被创建时补调用
+析构函数：对象被销毁时被调用
+
+
+析：分崩离析
+英文：构造函数 constructor 析构函数destructor
