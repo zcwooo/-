@@ -3470,4 +3470,30 @@ void main()
 	obj.Test();
 	system("pause");
 }
-1
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+class Object
+{
+public:
+	int x=1;
+	int y=2;
+public:
+	int Add()
+	{
+		return x + y; // 相当于 this->x + this->y
+	}
+	void Test()
+	{
+		printf("Sum: %d \n ", Add()); // 相当于this->Add()
+	}
+};
+
+
+void main()
+{
+	Object obj; 
+	obj.Add(); 
+	obj.Test();
+	system("pause");
+}
