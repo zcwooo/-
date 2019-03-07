@@ -3497,3 +3497,51 @@ void main()
 	obj.Test();
 	system("pause");
 }
+
+(1) 在成员函数里:当局部变量与成员变量重名时，该变量指向的是局部变量。
+
+class Object
+{
+public:
+	int x; // 成员变量
+	void Test(int x)
+	{
+		printf("x = %d \n", x);// 最近的:函数内定义的x
+	}
+};
+
+如果要指定成员变量x，则必须加上 this->的限定
+
+(2) 在成员函数里，当成员变量与全局变量重名时，该变量指向的是成员变量。
+
+int x = 10; // 全局变量
+class Object
+{
+public:
+	int x;
+	void Test(int)
+	{
+		printf("x = %d \n", x);// 最近的x:成员变量x
+	}
+};
+注：如果要指定全局变量x，则必须加上::x 
+
+(3) 在成员函数与全局函数重名时，默认指成员函数
+ void Sum(int x, int y)
+ {
+      return x + y;
+ }
+
+class Object
+{
+public:
+      void Sum(int x, int y)
+      {
+          return x + y;
+      }
+      void Test()
+      {
+	printf("x = %d \n", Sum(10,11));// 最近的x:成员变量x
+      }
+};
+注：::全局符号， this-> 成员
