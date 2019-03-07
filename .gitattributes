@@ -88,3 +88,18 @@ int main()
 	system("pause");
 	return 0;
 }
+
+
+#include <stdio.h> 
+#include <stdlib.h> 
+#include <string.h> 
+#include "Object.h"
+void Object::Test() 
+{     printf("x is %d \n", x); // 仍然可以省略this->
+ }
+
+ class Object
+{ public:  
+	int x; 
+	void Test();
+};
