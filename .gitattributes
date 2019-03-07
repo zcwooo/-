@@ -3545,3 +3545,57 @@ public:
       }
 };
 注：::全局符号， this-> 成员
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+class Circle
+{ 
+public:  
+	int GetX()
+	{
+		return m_x;
+	}
+	int GetY()
+	{
+		return m_y;
+	}
+	void SetRadius(int r)
+	{
+
+		m_radius = r;
+	}
+	void MoveTo(int x, int y)    
+	{  
+		m_x = x;
+		m_y = y;
+	}    
+
+	double Area()
+	{
+		return 3.14*m_radius*m_radius;
+	}
+	//int contain(double x, double y)
+	//{
+
+	//}
+private:   
+	int m_x;  
+	int m_y;    
+	int m_radius;
+};
+
+
+void main()
+{
+	Circle obj;
+	obj.SetRadius(2);
+	obj.MoveTo(0, 0);
+	double area = obj.Area();
+	/*if (obj.contain(1.2, 1.3))
+	{
+		printf("OK");
+	}*/
+	system("pause");
+//	return 0;
+}
