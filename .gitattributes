@@ -3690,3 +3690,69 @@ int main()
 	return 0;
 }
 
+#include<stdio.h>
+#include<stdlib.h>
+#include"DataStore.h"
+DataStore::DataStore()
+{
+	m_head.next = NULL;
+}
+DataStore::~DataStore()
+{
+	Student* p = m_head.next;
+	while (p)
+	{
+		Student* next = p->next;
+		free(p);
+		p = next;
+	}
+}
+void DataStore::Add(const Student* data)
+{
+	// 创建对象、复制数据
+	Student* copy = (Student*)malloc(sizeof(Student));
+	*copy = *data;
+
+	// 插入一个对象到链表中
+	Student* cur = m_head.next; // 当前节点current
+	Student* pre = &m_head;  // 上一个节点previous
+	while (cur)
+	{
+		if (copy->id < cur->id) // 找到这个位置
+			break;
+
+		pre = cur;
+		cur = cur->next;  // 找到最后一个对象
+	}
+
+	// 插入到pre节点的后面
+	copy->next = pre->next;
+	pre->next = copy;
+}
+Student* DataStore::Found(int id)
+{
+	Student* p = m_head.next;
+	while (p)
+	{
+		if (p->id == id)
+			return p;
+
+		p = p->next; // 下一个对象
+	}
+	return NULL;
+}
+void DataStore::Print()
+{
+	Student* p = m_head.next;
+	while (p)
+	{
+		printf("ID: %d, name: %s\n", p->id, p->name);
+		p = p->next; // 下一个对象
+	}
+}
+
+int main()
+{
+	system("pause");
+	return 0;
+}
