@@ -3613,3 +3613,79 @@ public:
 void Object::Test() //(2) 成员函数写在外边，加上类名限定
 {
 }
+
+#include <stdio.h>
+#include <string.h>
+
+// 网卡的物理地址
+// 如5C-26-0A-86-7B-4A, 或5C:26:0A:86:7B:4A
+class MacAddress
+{
+public:
+	int parse(const char* str)
+	{
+		if (strlen(str) != 17) return -1;
+
+		int k = 0;
+		for (int i = 0; i<17; i += 3)
+		{
+			unsigned char v1 = hexToInt(str[i]);
+			unsigned char v2 = hexToInt(str[i + 1]);
+			data[k] = v1 * 16 + v2;
+			k++;
+
+			// 检查是横线或冒号, 也可以放松检查
+			char b = str[i + 2];
+			if (b != '-' && b != ':' && i != 0)
+			{
+				return -1;
+			}
+		}
+		return 0;
+	}
+
+	void toString(char* output)
+	{
+		int offset = 0;
+		for (int i = 0; i<6; i++)
+		{
+			sprintf_s(output + offset, "%02X-", data[i]);
+			offset += 3;
+		}
+		output[offset - 1] = 0;
+	}
+
+private:
+	// 十六进制的字符 转成 数字
+	unsigned char hexToInt(char c)
+	{
+		if (c >= '0' && c <= '9') return c - '0';
+		if (c >= 'a' && c <= 'z') return c - 'a' + 10;
+		if (c >= 'A' && c <= 'Z') return c - 'A' + 10;
+		return 0;
+	}
+
+public:
+	unsigned char data[6];
+};
+
+int main()
+{
+	// 测试1
+	MacAddress a1;
+	a1.parse("5C-26-0A-86-7B-4A");
+
+
+	// 测试2
+	MacAddress a2;
+	a2.data[0] = 0x11;
+	a2.data[1] = 0xA3;
+	a2.data[2] = 0x56;
+	a2.data[3] = 0xF3;
+	a2.data[4] = 0xF1;
+	a2.data[5] = 0xAF;
+	char text[32];
+	a2.toString(text);
+
+	return 0;
+}
