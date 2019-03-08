@@ -3770,3 +3770,24 @@ int main()
 	system("pause");
 	return 0;
 }
+
+
+
+#include<stdio.h>
+#include<stdlib.h>
+struct Student
+{
+	int id;
+	char name[128];
+};
+int main()
+{
+	Student* st = new Student[500];
+	for (int i = 0; i < 500; i++)
+	{
+		st[i].id= i + 1;
+	}
+	delete[]st;
+	system("pause");
+	return 0;
+}
