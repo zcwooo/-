@@ -3779,3 +3779,14 @@ public:
 		return result;
 	}
 };
+
+一般形式:
+	Logger& operator << (Type value)
+	{
+		return *this;
+	}
+
+名称: operator <<
+返回值：左值，一般返回对象自己
+参数：待输出的数据
+
