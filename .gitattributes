@@ -3723,3 +3723,26 @@ int main()
 
 析：分崩离析
 英文：构造函数 constructor 析构函数destructor
+
+使用重载运算符的语法，可以使得自己定义的类支持加减乘除等算术运算符。
+
+第一种方式: 类操作符
+	// 重载加号操作符
+	Fraction operator + (const Fraction& other)
+	{
+		Fraction result;
+           // 本对象和other运算，得出结果并返回
+		return result;
+	}
+
+另一种写法：重载全局操作符
+
+默认地， 操作符 + 已经支持了 double + double, int + int等等，现在要求重载一下，支持 Fraction + Fraction
+
+即，已经存在
+int  operator + (int a, int b);
+double operator + (double a, double b);
+现在要写一种
+Fraction operator+ (const Fraction&a , const Fraction& b);
+
+
