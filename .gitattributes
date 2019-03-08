@@ -3898,5 +3898,30 @@ int main()
 	return 0;
 }
 
+需求：
+    写一个可变长度的数组类 Array
+    用途于存放若干元素，个数未知
 
+设计：
+    内部动态申请一个buffer
+    capacity: 表示buffer的大小
+    size: 表示buffer中已经存放元素的个数
+
+template <typename T>
+class Array
+{
+};
+
+使用类模板，就可以适用于不同元素类型，避免创建多个很类型的类。
+否则，要为每种类型创建一个类，例如：IntArray, DoubleArray....太麻烦了
+
+
+Array<double> arr(4); // 创建array，初始capacity为4
+可以把Array<double>合起来看成一个类名
+
+使用这个对象的方法和普通对象没有特别之处：
+arr.PushBack(123);
+arr.PushBack(456);
+int size = arr.Size();
+arr[0] = 100;
 
