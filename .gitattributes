@@ -3800,3 +3800,17 @@ using namespace XXX;  // 使用XXX里面的所有名字
 using XXX::YYY;  // 只使用XXX里面的一个名字YYY
 
 在VC中展示
+
+在一个double型数组中，查找最大的数。。。
+在一个float型数组中，查找最大的数。。。
+在一个Object[]数组中，查找最大的元素。。。
+算法都是一样的：遍例数组，找出最大值。只是元素的类型不一样而已。
+如果每一种类型都重载一个findmax函数，是否有点太笨拙了呢？？
+template <typename T>
+T findmax (T arr[],  int len)
+{
+	T val = arr[0];
+	....
+}
+① 算法相同
+② 元素类型不同，用T代替
