@@ -3756,3 +3756,17 @@ int main()
 	system("pause");
 	return 0;
 }
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+	int* p = new int[1024];
+	for (int i = 0; i < 1024; i++)
+	{
+		p[i] = i + 1;
+	}
+	delete[] p;
+	//printf("%d\n",*p);
+	system("pause");
+	return 0;
+}
