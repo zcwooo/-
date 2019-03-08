@@ -3765,3 +3765,17 @@ Student&  st = ds["shaofa"]; // 查找姓名为"shaofa"的记录
 (3) 操作符[]是可以重载的，参数类型不同
 
 (4) 必须考虑元素不存在的情形 
+
+
+重载类型转换操作符 ()
+
+一般形式
+class Object
+{
+public:
+ 	operator Type() // Type为目标类型
+	{
+		Type result;
+		return result;
+	}
+};
