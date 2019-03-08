@@ -3746,3 +3746,12 @@ double operator + (double a, double b);
 Fraction operator+ (const Fraction&a , const Fraction& b);
 
 
+当一个对象设计用于包含多个元素时，可以重载操作符[]
+
+比如，一个字符串Text，它包含了多个元素（每个元素是一个字符）
+Text txt("hello world");
+char ch = txt[0]; // 'h'
+
+比如，在一个DataStore里存储多个Student数据
+DataStore ds;
+Student&  st = ds["shaofa"]; // 查找姓名为"shaofa"的记录
