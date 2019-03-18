@@ -104,3 +104,7 @@ void Object::Test()
 	void Test();
 };
 11问题示范
+
+http://www.jizhuomi.com/software/166.html
+    在Solution Explorer视图中的根节点“Addition”上点右键，在右键菜单中选择Add->Class，弹出“Add Class”对话框，然后在中间区域中选择“MFC Class”，点“Add”按钮，弹出另一个类向导对话框，设置Class name为CAddSheet，Base class选择“CPropertySheet”，点“Finish”按
+	不知道根节点是哪一个
