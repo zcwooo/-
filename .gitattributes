@@ -4387,3 +4387,13 @@ print(session.run(shape))
 image_ndarray=image_tensor.eval(session=session)
 plt.imshow(image_ndarray)
 plt.show()
+
+
+import tensorflow as tf
+import matplotlib.pyplot as plt
+x=tf.random_uniform([10,4,20],minval=0,maxval=100,dtype=tf.float32)
+session=tf.Session()
+array=session.run(x)
+array1d=array.reshape([-1])
+plt.hist(array1d)
+plt.show()
