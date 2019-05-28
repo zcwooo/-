@@ -4397,3 +4397,20 @@ array=session.run(x)
 array1d=array.reshape([-1])
 plt.hist(array1d)
 plt.show()
+
+
+import tensorflow as tf
+import matplotlib.pyplot as plt
+import numpy as np
+import math
+sigma=1
+mu=10
+result=tf.random_normal([10,4,20,5],mu,sigma,tf.float32)
+session=tf.Session()
+array=session.run(result)
+array1d=array.reshape([-1])
+histogram,bins,patch=plt.hist(array1d,25,facecolor='red',alpha=0.5,normed=True)
+x=np.arange(5,15,0.01)
+y=1.0/(math.sqrt(2*np.pi)*sigma)*np.exp(-np.power(x-mu,2.0)/(2*math.pow(sigma,2)))
+plt.plot(x,y)
+plt.show()
