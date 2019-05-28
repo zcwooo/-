@@ -51,7 +51,7 @@ int main()
 int main()
 {
 	int sum = 0, value = 0;
-	
+
 	while (std::cin >> value)
 	{
 		sum += value;
@@ -70,7 +70,7 @@ int main()
 	{
 		int cnt = 1;
 		while (std::cin >> val)
-		{ 
+		{
 			if (val == currVal)
 				++cnt;
 			else
@@ -304,7 +304,7 @@ int main()
 		cout << i << endl;
 	}
 }
-  
+
   #include<iostream>
 #include<vector>
 using namespace std;
@@ -381,7 +381,7 @@ int main()
 			graderesult = graderesult + "--";
 		}
 	cout << graderesult << endl;
-	system("pause");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+	system("pause");
 	return 0;
 }
 
@@ -417,7 +417,7 @@ int main()
 
 	}
 	cout << "Number of a is" << acnt << '\n' << "Number of e is" << ecnt << '\n' << "Number of i is" << icnt << '\n' << "Number of o is" << ocnt << '\n' << "Number of u is" << ucnt << endl;
-	system("pause");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+	system("pause");
 	return 0;
 }
 
@@ -430,7 +430,7 @@ int fact(int val)
 			ret = ret*val--;
 		return ret;
 	}
-	
+
 int fact(int);
 int main()
 {
@@ -468,22 +468,22 @@ if name == 'python':         # 判断变量否为'python'
 else:
     print ('name')              # 条件不成立时输出变量名称
 	# 例3：if语句多个条件
- 
+
 num = 9
 if num >= 0 and num <= 10:    # 判断值是否在0~10之间
     print 'hello'
 # 输出结果: hello
- 
+
 num = 10
 if num < 0 or num > 10:    # 判断值是否在小于0或大于10
     print 'hello'
 else:
     print 'undefine'
 # 输出结果: undefine
- 
+
 num = 8
 # 判断值是否在0~5或者10~15之间
-if (num >= 0 and num <= 5) or (num >= 10 and num <= 15):    
+if (num >= 0 and num <= 5) or (num >= 10 and num <= 15):
     print 'hello'
 else:
     print 'undefine'
@@ -493,7 +493,7 @@ else:
 
 LRESULT CALLBACK WindowProc( HWND , UINT ,WPARAM , LPARAM ); //声明窗口函数
 
- 
+
 
 int APIENTRY WinMain(HINSTANCE hinstance ,HINSTANCE hPrevinstance , LPSTR lpcmdLine , int nCmdShow)     //MFC下的程序入口函数WinMain(),传统的dos程序是以main()作为程序入口的，这一点不同
 
@@ -505,7 +505,7 @@ int APIENTRY WinMain(HINSTANCE hinstance ,HINSTANCE hPrevinstance , LPSTR lpcmdL
 
                   MSGmsg;        //定义消息结构体变量
 
- 
+
 
                   wndclass.style=CS_HREDRAW|| CS_VREDRAW; //改变窗口大小则重绘
 
@@ -527,7 +527,7 @@ int APIENTRY WinMain(HINSTANCE hinstance ,HINSTANCE hPrevinstance , LPSTR lpcmdL
 
                   wndclass.lpszClassName="Windows窗口创建";         //窗口类名为"Windows窗口创建"
 
- 
+
 
                   if(!RegisterClass(&wndclass))         //此为注册类的函数
 
@@ -537,7 +537,7 @@ int APIENTRY WinMain(HINSTANCE hinstance ,HINSTANCE hPrevinstance , LPSTR lpcmdL
 
                           }
 
- 
+
 
                   //创建窗口的函数
 
@@ -565,7 +565,7 @@ int APIENTRY WinMain(HINSTANCE hinstance ,HINSTANCE hPrevinstance , LPSTR lpcmdL
 
          UpdateWindow(hwnd);          //不断的更新窗口的客户区
 
- 
+
 
          while(GetMessage(&msg,NULL,0,0))    //捕获消息
 
@@ -581,7 +581,7 @@ int APIENTRY WinMain(HINSTANCE hinstance ,HINSTANCE hPrevinstance , LPSTR lpcmdL
 
 }
 
- 
+
 
 LRESULT CALLBACK WindowProc(HWND hwnd,UINTmessage,WPARAM wParam,LPARAM lParam)               //窗口函数
 
@@ -609,7 +609,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd,UINTmessage,WPARAM wParam,LPARAM lParam)  
 
                           PostQuitMessage(0);               //产生退出程序消息WM_QUIT
 
-                          return0; 
+                          return0;
 
          }
 
@@ -1166,7 +1166,7 @@ int main()
 	{
 		printf("请输入一个数：");
 		scanf("%d", &n);
-	} 
+	}
 	while (n<0||n>100);
 	printf("%d", n);
 	system("pause");
@@ -1349,8 +1349,8 @@ int main()
 		{
 			printf("质数");
 		}
-	else 
-	{ 
+	else
+	{
 		printf("不是质数");
         	}
 	system("pause");
@@ -1392,7 +1392,7 @@ int main()
 	{
 		if (year%400==0)
 		printf("%d是闰年",year);
-		
+
 		else
 		printf("%d不是闰年", year);
 	}
@@ -1693,7 +1693,7 @@ int main()
 void welcome()
 {
 	printf("** C语言快速入门 **\n");
-	printf("** 作者: 邵发\n");	
+	printf("** 作者: 邵发\n");
 	printf("** 官网: http://afanihao.cn ** \n");
 }
 
@@ -1764,12 +1764,12 @@ bool check(int a, int b, int c)
 int main()
 {
 	bool c =check(3,4,5);
-	
+
 	if (c)
 	{
 		printf("是三角形");
 	}
-	else 
+	else
 	{
 		printf("nonono");
 	}
@@ -1857,7 +1857,7 @@ bool is_leap_year(int  year)
 		return true;
 	else if (year % 100 != 0 && year % 4 == 0)
 		return true;
-	else 
+	else
 		return  false;
 
 }
@@ -1873,7 +1873,7 @@ int main()
 	{
 		printf("不是闰年");
 	}
-	
+
 	system("pause");
 	return 0;
 }
@@ -1920,7 +1920,7 @@ void change(int* arr, int size)
 			arr[i] = arr[i];
 		}
 	}
-	
+
 }
 void print_array(int*arr, int size)
 {
@@ -2126,7 +2126,7 @@ int test()
 	add(&s);
 	list_all();
 	return 0;
-} 
+}
 void on_add()
 {
 	Student s;
@@ -2220,7 +2220,7 @@ int input(Student* s)
 	s->scores[1] = b;
 	s->scores[2] = c;
 
-	//scanf("%d,%d,%d", 
+	//scanf("%d,%d,%d",
 	//	&s->scores[0], &s->scores[1], &s->scores[2]);
 	return 0;
 }
@@ -2276,9 +2276,9 @@ int main()
 	{
 		printf("> ");
 		scanf("%s", cmdline);
-		
+
 		//printf("cmd: %s \n", cmdline);
-		
+
 		// 退出
 		if( strcmp(cmdline, "exit") == 0)
 		{
@@ -2288,7 +2288,7 @@ int main()
 
 		// 菜单处理
 		if( strcmp(cmdline, "add") == 0)
-		{		
+		{
 			Student s;
 			input(&s);
 			add(&s);
@@ -2296,19 +2296,19 @@ int main()
 		}
 		// 菜单处理
 		if( strcmp(cmdline, "list") == 0)
-		{		
+		{
 			list_all();
 			continue;
 		}
 		// 菜单处理
 		if( strcmp(cmdline, "count") == 0)
-		{		
+		{
 			printf("total: %d \n", count);
 			continue;
 		}
 		// 菜单处理
 		if( strcmp(cmdline, "find") == 0)
-		{		
+		{
 			printf("enter Name: ");
 			char name[16];
 			scanf("%s", name);
@@ -2318,7 +2318,7 @@ int main()
 			{
 				printf("Found: ID:%d, Name:%s,Score:%d,%d,%d\n",
 					s->id, s->name,
-					s->scores[0], s->scores[1], 
+					s->scores[0], s->scores[1],
 					s->scores[2]);
 			}
 			else
@@ -2345,7 +2345,7 @@ int test ()
 	s.scores[0] = 70;
 	s.scores[1] = 80;
 	s.scores[2] = 90;
-	
+
 	add(&s);
 
 	list_all();
@@ -2462,7 +2462,7 @@ int main()
 //定义数据
 struct Option
 {
-	char answer[100]; // 选项提示文字 
+	char answer[100]; // 选项提示文字
 	bool selected;  // 是否选中
 };
 
@@ -2477,7 +2477,7 @@ int main()
 {
 	struct Example ex;
 	strcpy_s(ex.question, 100, "你喜欢的编程语言?");
-	
+
 	// 第1项
 	strcpy_s(ex.options[0].answer, 100, "C");
 	ex.options[0].selected = true;
@@ -2521,7 +2521,7 @@ int main()
 //定义数据
 struct Option
 {
-	char answer[100]; // 选项提示文字 
+	char answer[100]; // 选项提示文字
 	bool selected;  // 是否选中
 };
 
@@ -2536,7 +2536,7 @@ int main()
 {
 	struct Example ex;
 	strcpy_s(ex.question, 100, "你喜欢的编程语言?");
-	
+
 	// 第1项
 	strcpy_s(ex.options[0].answer, 100, "C");
 	ex.options[0].selected = true;
@@ -2967,7 +2967,7 @@ int main()
 }
 
 
-srand(time(NULL)); 	
+srand(time(NULL));
      for(int i=0; i<10; i++)
 	{
 		printf("%d \n", rand());
@@ -3025,7 +3025,7 @@ int main()
 
 time_t: 自1970年1月1日的秒值
 
-tm: 
+tm:
 
 localtime: time_t 转成 “年月日时分秒”
 
@@ -3070,8 +3070,8 @@ fclose(fp);
 
 
 （3） fwrite: 写入数据
-size_t fwrite(const void *buf, 
-     size_t size, size_t count, 
+size_t fwrite(const void *buf,
+     size_t size, size_t count,
      FILE *stream);
 
 参数: stream就是前面fopen的返回值
@@ -3183,13 +3183,13 @@ int load()
 	// 	int n = fread(buf, 1, 128, fp);
 
 	// 	char buf[4];
-	// 	while(! feof (fp)) 
+	// 	while(! feof (fp))
 	// 	{
 	// 		int n = fread (buf, 1, 4, fp);
 	// 		if( n > 0)
 	// 		{
 	// 			printf("read %d bytes \n", n);
-	// 		}		
+	// 		}
 	// 	}
 
 	char buf[128];
@@ -3208,13 +3208,13 @@ int load()
 }
 
 char buf[4];
-	while(! feof (fp)) 
+	while(! feof (fp))
 	{
 	 	int n = fread (buf, 1, 4, fp);
 	 	if( n > 0)
 		{
 	 	printf("read %d bytes \n", n);
-	 	}		
+	 	}
 	}
 
 	 char buf[128];
@@ -3428,21 +3428,21 @@ cpp文件放 函数实现 include头文件
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-class Object 
+class Object
 {
-public:  
-	int x; 
-	int y;   
-	void Test() 
-	{ printf("hello,world!\n"); } 
+public:
+	int x;
+	int y;
+	void Test()
+	{ printf("hello,world!\n"); }
 };
 
 
 void main()
 {
 	Object obj;
-	obj.Test();  // 点号 .  
-	Object* p = &obj; 
+	obj.Test();  // 点号 .
+	Object* p = &obj;
 	p->Test();  // 箭头 ->
 	system("pause");
 }
@@ -3450,14 +3450,14 @@ void main()
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-class Object 
+class Object
 {
-public:  
-	int x; 
-	int y;   
-	void Test()   
+public:
+	int x;
+	int y;
+	void Test()
 	{
-		printf("x=%d, y=%d\n", this->x, this->y); 
+		printf("x=%d, y=%d\n", this->x, this->y);
 	}
 };
 
@@ -3492,8 +3492,8 @@ public:
 
 void main()
 {
-	Object obj; 
-	obj.Add(); 
+	Object obj;
+	obj.Add();
 	obj.Test();
 	system("pause");
 }
@@ -3524,7 +3524,7 @@ public:
 		printf("x = %d \n", x);// 最近的x:成员变量x
 	}
 };
-注：如果要指定全局变量x，则必须加上::x 
+注：如果要指定全局变量x，则必须加上::x
 
 (3) 在成员函数与全局函数重名时，默认指成员函数
  void Sum(int x, int y)
@@ -3550,8 +3550,8 @@ public:
 #include <stdlib.h>
 #include <string.h>
 class Circle
-{ 
-public:  
+{
+public:
 	int GetX()
 	{
 		return m_x;
@@ -3565,11 +3565,11 @@ public:
 
 		m_radius = r;
 	}
-	void MoveTo(int x, int y)    
-	{  
+	void MoveTo(int x, int y)
+	{
 		m_x = x;
 		m_y = y;
-	}    
+	}
 
 	double Area()
 	{
@@ -3579,9 +3579,9 @@ public:
 	//{
 
 	//}
-private:   
-	int m_x;  
-	int m_y;    
+private:
+	int m_x;
+	int m_y;
 	int m_radius;
 };
 
@@ -3820,7 +3820,7 @@ public:
 	}
 
 public:
-	char url[128]; // 在线观看的URL地址 
+	char url[128]; // 在线观看的URL地址
 	int visits; // 播放量
 };
 
@@ -3878,7 +3878,7 @@ T findmax (T arr[],  int len)
 	{
 		if(arr[i] > val) val = arr[i];
 	}
-	return  val;        
+	return  val;
 }
 
 template <typename _A, typename _B>
@@ -4017,13 +4017,13 @@ public:
 				}
 				else
 					cout << " ";
-				
+
 			}
 			cout << endl;
 		}
 		for (i = 0; i < GameSetting::window_width; i++)
 			cout << "#";
-		
+
 	}
 	//游戏结束
 	static void GameOver(int score)
@@ -4077,7 +4077,7 @@ public:
 		gotoxy(GameSetting::window_width - 22, 28);
 		cout << "小键盘 - : 减慢" << endl;
 
-		
+
 		gotoxy(GameSetting::window_width - 22, 30);
 		cout << "版本: 1.0" << endl;
 	}
@@ -4170,9 +4170,9 @@ public://默认构造函数
 	{
 		char ch;
 
-		if (_kbhit())					//kbhit 非阻塞函数 
+		if (_kbhit())					//kbhit 非阻塞函数
 		{
-			ch = _getch();	//使用 getch 函数获取键盘输入 
+			ch = _getch();	//使用 getch 函数获取键盘输入
 			switch (ch)
 			{
 			case 'w':
@@ -4374,3 +4374,16 @@ int main()
 
 	return 0;
 }
+
+
+
+import tensorflow as tf
+import matplotlib.pyplot as plt
+image=tf.read_file("test.jpg",'r')
+image_tensor=tf.image.decode_jpeg(image)
+shape=tf.shape(image_tensor)
+session=tf.Session()
+print(session.run(shape))
+image_ndarray=image_tensor.eval(session=session)
+plt.imshow(image_ndarray)
+plt.show()
