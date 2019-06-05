@@ -4414,3 +4414,27 @@ x=np.arange(5,15,0.01)
 y=1.0/(math.sqrt(2*np.pi)*sigma)*np.exp(-np.power(x-mu,2.0)/(2*math.pow(sigma,2)))
 plt.plot(x,y)
 plt.show()
+
+
+import tensorflow as tf
+def net(tensor):
+    I,H1,O=733248,200,10
+    w1=tf.random_normal([I,H1],0,1,tf.float32)
+    b1=tf.random_normal([H1],0,1,tf.float32)
+    l1=tf.matmul(tensor,w1)+b1
+    sigma1=tf.nn.sigmoid(l1)
+
+    w2=tf.random_normal([H1,O],0,1,tf.float32)
+    b2=tf.random_normal([O],0,1,tf.float32)
+
+    l2=tf.matmul(sigma1,w2)+b2
+    return l2
+image=tf.read_file("0.jpg",'r')
+image_tensor=tf.image.decode_jpeg(image)
+length=tf.size(image_tensor)
+t=tf.reshape(image_tensor,[1,length])
+t=tf.cast(t,tf.float32)
+t=t/255.0
+output=net(t)
+session=tf.Session()
+print(session.run(output))
