@@ -4416,6 +4416,7 @@ plt.plot(x,y)
 plt.show()
 
 
+<<<<<<< HEAD
 import tensorflow as tf
 def net(tensor):
     I,H1,O=733248,200,10
@@ -4438,3 +4439,104 @@ t=t/255.0
 output=net(t)
 session=tf.Session()
 print(session.run(output))
+=======
+
+import tensorflow as tf
+x=tf.Variable(4.0,dtype=tf.float32)
+y=tf.pow(x-1,2.0)
+opti=tf.train.ProximalGradientDescentOptimizer(0.25).minimize(y)
+session.run(tf.global_variables_initializer())
+for i in range(10):
+    session.run(opti)
+    print(session.run(x))
+
+
+	import tensorflow as tf
+import matplotlib.pyplot as plt
+import numpy as np
+x=tf.constant([1,2,3,4,5,6],tf.float32)
+y=tf.constant([3,4,7,8,11,14],tf.float32)
+w=tf.Variable(1.0,dtype=tf.float32)
+b=tf.Variable(1.0,dtype=tf.float32)
+loss=tf.reduce_sum(tf.square(y-(w*x+b)))
+session=tf.Session()
+session.run(tf.global_variables_initializer())
+opti=tf.train.GradientDescentOptimizer(0.005).minimize(loss)
+MSE=[]
+for i in range(500):
+    session.run(opti)
+    MSE.append(session.run(loss))
+    if i%50==0:
+            print((session.run(w),session.run(b)))
+plt.figure(1)
+plt.plot(MSE)
+plt.show()
+
+plt.figure(28)
+x_array,y_array=session.run([x,y])
+plt.plot(x_array,y_array,'o')
+xx=np.arange(0,10,0.005)
+yy=session.run(w)*xx+session.run(b)
+plt.plot(xx,yy)
+plt.show()
+
+
+# -*- coding: utf-8 -*-
+"""
+Spyder Editor
+
+This is a temporary script file.
+"""
+# -*- coding:utf-8 -*-
+import tensorflow as tf
+from tensorflow.examples.tutorials.mnist import input_data
+
+# number from 0 to 9:
+MNIST_data_folder="D:\\zcw\\MNIST_data"
+mnist=input_data.read_data_sets(MNIST_data_folder,one_hot=True)
+#mnist = input_data.read_data_sets('MNIST_data/', one_hot=True)
+
+
+def add_layer(inputs, in_size, out_size, activation_function=None):
+    Weights = tf.Variable(tf.random_normal([in_size, out_size]))
+    bises = tf.Variable(tf.zeros([1, out_size]) + 0.1)
+    Wx_plus_b = tf.matmul(inputs, Weights) + bises
+
+    if activation_function is None:
+        outputs = Wx_plus_b
+    else:
+        outputs = activation_function(Wx_plus_b)
+
+    return outputs
+
+
+# 计算准确度
+def compute_accuracy(x, y):
+    global prediction
+    y_pre = sess.run(prediction, feed_dict={xs: x})
+    correct_prediction = tf.equal(tf.argmax(y_pre, 1), tf.argmax(y, 1))
+    accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+    result = sess.run(accuracy, feed_dict={xs: x, ys: y})
+    return result
+
+
+# def placeholder for inputs
+xs = tf.placeholder(tf.float32, [None, 784])  # 28*28
+ys = tf.placeholder(tf.float32, [None, 10])  # 10个输出
+
+# add output layer
+prediction = add_layer(xs, 784, 10, tf.nn.softmax)  # softmax常用于分类
+
+cross_entropy = tf.reduce_mean(-tf.reduce_sum(ys * tf.log(prediction), reduction_indices=[1]))
+train = tf.train.GradientDescentOptimizer(0.3).minimize(cross_entropy)
+
+sess = tf.Session()
+sess.run(tf.initialize_all_variables())
+
+for i in range(2000):
+    batch_xs, batch_ys = mnist.train.next_batch(100)
+    sess.run(train, feed_dict={xs: batch_xs, ys: batch_ys})
+    if i % 100 == 0:
+        print(compute_accuracy(mnist.test.  images, mnist.test.labels))
+
+>>>>>>> ea683a3f7e9b57e7868e3f4781e6dbdf24e36e09
