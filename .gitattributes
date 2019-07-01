@@ -4541,3 +4541,17 @@ for i in range(2000):
         print(compute_accuracy(mnist.test.  images, mnist.test.labels))
 
 >>>>>>> ea683a3f7e9b57e7868e3f4781e6dbdf24e36e09
+
+from tensorflow.python.tools.inspect_checkpoint import print_tensors_in_checkpoint_file
+
+# print all variables in checkpoint file
+print("=========All Variables==========")
+print_tensors_in_checkpoint_file("/home/jagger/workspace/tmp/model.ckpt", tensor_name=None, all_tensors=True, all_tensor_names=True)
+
+# print only tensor v1 in checkpoint file
+print("=========V1==========")
+print_tensors_in_checkpoint_file("/home/jagger/workspace/tmp/model.ckpt", tensor_name='v1', all_tensors=False, all_tensor_names=False)
+
+# print only tensor v2 in checkpoint file
+print("=========V2==========")
+print_tensors_in_checkpoint_file("/home/jagger/workspace/tmp/model.ckpt", tensor_name='v2', all_tensors=False, all_tensor_names=False)
