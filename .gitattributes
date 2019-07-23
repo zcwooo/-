@@ -46,3 +46,7 @@ strcpy需要string.h的头文件
 
 如何解决转移项目重新加载错误：
 更改proj文件中的错误文件信息，可以注释或者删除
+
+
+jupter导入第三方库
+采用！ pip install xxx的方式可以完美得到解决
